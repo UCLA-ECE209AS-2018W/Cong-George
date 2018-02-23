@@ -9,10 +9,12 @@ scan_s = '10'
 file_name = 'ap_info'
 chosen_bssid = ''
 file_path = os.system('pwd')
+channel = ''
+SSID = ''
 
 # save 5-second scanning result to a csv file
 print('scan for nearby AP...')
-#os.system('rm ' + file_name + '*')
+os.system('rm ' + file_name + '*')
 os.system('timeout ' + scan_s + ' airodump-ng -w ' + file_name +
                                 ' --output-format csv -I 5 --ignore-negative-one '
                                 + monitor_card)
@@ -32,8 +34,15 @@ for line in sortedlist:
     if int(strip_item) < -1:
         # record the bssid of the AP with the strongest signal
         chosen_bssid = line[0].replace(" ", '')
-        print(strip_item)
-        print(chosen_bssid)
+        channel = line[3].replace(" ", '')
+        SSID = line[-2].replace(" ", '')
+        print("AP signal strength: " + strip_item)
+        print("AP Mac address:" + chosen_bssid)
+        print("channel: " + channel)
+        print("SSID: " + SSID)
         break
 
+# config adapter to focus on certain wifi frequency
+channel_config = "iwconfig wlan1 channel " + channel
+os.system(channel_config)
 
