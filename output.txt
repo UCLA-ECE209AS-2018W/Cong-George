@@ -1,1 +1,1 @@
-[{"device": 12, "null": 4364, "data": 634, "payload": 15748.255296264184}]
+[{"device": 7, "null": 2523, "data": 1679, "payload": 13478.879955318913}, {"device": 6, "null": 7597, "data": 1395, "payload": 48189.01330205069}, {"device": 6, "null": 2857, "data": 1261, "payload": 90920.39534596131}, {"device": 6, "null": 929, "data": 3615, "payload": 97195.17489704066}]

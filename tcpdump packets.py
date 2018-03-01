@@ -7,9 +7,10 @@ ap_mac = '08:95:2a:6e:18:b8'
 devices_data = {}
 devices_null = {}
 packet_summary = []
+pck_device_sum = []
 pack_sum_slice = {"device": 0, "null": 0, "data": 0, "payload": 0}
 pack_s = '1000'
-timeout = '10' # 3 mins
+timeout = '30' # 3 mins
 filter_rule1 = ' and type data and not type data subtype null'
 filter_rule2 = ' and not type mgt subtype beacon'
 filter_rule3 = ' type data'
@@ -19,10 +20,16 @@ SGW_mac = ''
 total_payload = 0
 print(file_name)
 
-for j in range(4):
-    pck_device_sum = []
+slice_num = 4
+sub_period = 10
+total_periods = slice_num * sub_period
+
+for j in range(slice_num):
     # collect 30 minutes of features
-    for i in range(10):
+    for i in range(sub_period):
+        print("Progress: " + str((1 - total_periods/(slice_num * sub_period))*100) + " percent")
+        total_periods -= 1
+
         os.system('rm ' + file_name)
         '''os.system('timeout ' + timeout + ' tcpdump -i ' + monitor_card +
                   ' -s ' + pack_s + ' -w ' + file_name + ' -v' + ' ether host ' + ap_mac +
@@ -38,27 +45,19 @@ for j in range(4):
             if packets.haslayer("Dot11"):
                 # if RA or TA is the target AP
                 if packets.addr1 == ap_mac or packets.addr2 == ap_mac:
-                    # if not NULL or QoS NULL data pack
-                    if packets.subtype != 12 and packets.subtype != 4:
-                        total_payload += len(packets)
 
                     # if RA is the AP addr
                     if packets.addr1[:-3] == ap_mac[:-3]:
-                        # attach device
-                        if packets.addr2 not in pck_device_sum and packets.addr2[:-3] != ap_mac[:-3]:
-                            pck_device_sum.append(packets.addr2)
 
                         # if packet type is not Null Qos data and is not NULL data
                         if packets.subtype == 12 or packets.subtype == 4:
                             devices_null[packets.addr2] = devices_null.get(packets.addr2, 0) + 1
                         else:
                             devices_data[packets.addr2] = devices_data.get(packets.addr2, 0) + 1
+                            total_payload += len(packets)
 
                     # if TA is the AP addr
                     elif packets.addr2[:-3] == ap_mac[:-3]:
-                        # attach device
-                        if packets.addr1 not in pck_device_sum and packets.addr1[:-3] != ap_mac[:-3]:
-                            pck_device_sum.append(packets.addr1)
 
                         # if only last byte differ from AP, then SA is SGW
                         if packets.addr3[:-3] == ap_mac[:-3]:
@@ -69,15 +68,22 @@ for j in range(4):
                             devices_null[packets.addr3] = devices_null.get(packets.addr3, 0) + 1
                         else:
                             devices_data[packets.addr3] = devices_data.get(packets.addr3, 0) + 1
+                            total_payload += len(packets)
 
         total_data = sum(devices_data.values())
         total_null = sum(devices_null.values())
 
         # count the number of devices
-        total_devices = len(devices_data)
-        for device in devices_null:
-            if device not in devices_data:
-                total_devices += 1
+        dev_num = len(devices_data)
+        for device in devices_data.keys():
+            if device not in pck_device_sum and device[:-3] != ap_mac[:-3]:
+                pck_device_sum.append(device)
+
+        for device in devices_null.keys():
+            if device not in devices_data and device[:-3] != ap_mac[:-3]:
+                dev_num += 1
+            if device not in pck_device_sum and device[:-3] != ap_mac[:-3]:
+                pck_device_sum.append(device)
 
         print("Null data pack count: " + str(total_null))
         print(devices_null)
@@ -86,7 +92,7 @@ for j in range(4):
         print(devices_data)
 
         print("SGW MAC address: " + SGW_mac)
-        print("device number: " + str(total_devices))
+        print("device number: " + str(dev_num))
 
         # build feature vectors
         pack_sum_slice["device"] = len(pck_device_sum)
@@ -97,6 +103,7 @@ for j in range(4):
         # reinitialize
         devices_data.clear()
         devices_null.clear()
+        total_payload = 0
 
     # insert last 30-min feature in summary
     packet_summary.append(copy.copy(pack_sum_slice))
