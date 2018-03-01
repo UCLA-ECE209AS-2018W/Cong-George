@@ -4,7 +4,7 @@ import csv
 import time
 import sys
 
-monitor_card = 'wlan1'
+monitor_card = 'wlan1mon'
 scan_s = '10'
 file_name = 'ap_info'
 chosen_bssid = ''
