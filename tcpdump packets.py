@@ -10,7 +10,7 @@ packet_summary = []
 pck_device_sum = []
 pack_sum_slice = {"device": 0, "null": 0, "data": 0, "payload": 0}
 pack_s = '1000'
-timeout = '30' # 3 mins
+timeout = '120' # 3 mins
 filter_rule1 = ' and type data and not type data subtype null'
 filter_rule2 = ' and not type mgt subtype beacon'
 filter_rule3 = ' type data'
@@ -20,7 +20,7 @@ SGW_mac = ''
 total_payload = 0
 print(file_name)
 
-slice_num = 4
+slice_num = 10
 sub_period = 10
 total_periods = slice_num * sub_period
 
@@ -98,7 +98,11 @@ for j in range(slice_num):
         pack_sum_slice["device"] = len(pck_device_sum)
         pack_sum_slice["null"] += total_null
         pack_sum_slice["data"] += total_data
-        pack_sum_slice["payload"] += total_payload/total_data
+
+        if total_data == 0:
+            pack_sum_slice["payload"] += 0
+        else:
+            pack_sum_slice["payload"] += total_payload/total_data
 
         # reinitialize
         devices_data.clear()
