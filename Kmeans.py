@@ -6,6 +6,7 @@ from sklearn.cluster import KMeans
 from sklearn import metrics
 from sklearn.metrics import pairwise_distances
 
+num_cluster = 2
 
 #convert plain text to feature matrix to be further classified
 def text2mat(filename):
@@ -28,7 +29,7 @@ def text2mat(filename):
 
 #Kmeans clustering
 def kmeans_clster(feature_mat):
-	kmeans = KMeans(n_clusters=2, random_state=0).fit(feature_mat)
+	kmeans = KMeans(n_clusters=num_cluster, random_state=0).fit(feature_mat)
 	print kmeans.labels_
 	#print kmeans.cluster_centers_
 	print 'Clustering scores:'
