@@ -1,17 +1,5 @@
 from scapy.all import *
 
-file = "ass_test2.pcap"
-target_mac = "7c:50:49:27:33:e3"
-
-'''
-probe_signature = {"probe":[], "htcap":[], "httag":[], "htmcs":[], "vhtcap":[], "vhtrxmcs":[], "vhttxmcs":[],
-             "extcap":[], "txpow":[], "excap":[]}
-assoc_signature = {"assoc":[], "htcap":[], "httag":[], "htmcs":[], "vhtcap":[], "vhtrxmcs":[], "vhttxmcs":[],
-             "extcap":[], "txpow":[], "excap":[]}
-wifi_signature = {"mac_addr": target_mac, "probe": probe_signature, "assoc": assoc_signature,
-                  "has_probe": 0, "has_assoc": 0}
-'''
-
 class signature:
     def __init__(self, type):
         if type in ["probe", "assoc"]:
@@ -82,7 +70,7 @@ def build_WifiSig(file_name, mac_addr):
                         if field.ID == 191:
                             wifi_signature.probe_sig.vhtcap.append(field.info[0:4])
                             wifi_signature.probe_sig.vhtrxmcs.append(field.info[4:8])
-                            wifi_signature.probe_sig.vhttmcs.append(field.info[8:12])
+                            wifi_signature.probe_sig.vhttxmcs.append(field.info[8:12])
 
                         # get txpow related signatures
                         if field.ID == 33:
@@ -136,7 +124,10 @@ def build_WifiSig(file_name, mac_addr):
     print("wifi signature build finish!")
     return wifi_signature
 
-
+"""
 if __name__ == "__main__":
+    file = "ass_test2.pcap"
+    target_mac = "7c:50:49:27:33:e3"
     new_sig = build_WifiSig(file, target_mac)
     new_sig.display()
+"""
