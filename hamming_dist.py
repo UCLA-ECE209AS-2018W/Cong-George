@@ -218,10 +218,6 @@ def get_hamming_dist(str1, str2):
 		print('Invalid comparison!')
 
 
-
-
-
-
 '''
 Input: 
 dir of file that contains the databse
@@ -253,7 +249,7 @@ def load_hex_database(database_file):
 
 
 if __name__ == "__main__":
-	#Load database here after  comprehensive data to it
+	#speficify database_file here after comprehensive data to it
 	database_file = "signature_database.p"
 	hexed_database = load_hex_database(database_file)
 	get_diff(hexed_database, test_wifi_sig)
