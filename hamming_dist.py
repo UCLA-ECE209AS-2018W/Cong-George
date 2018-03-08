@@ -253,15 +253,9 @@ def load_hex_database(database_file):
 
 
 if __name__ == "__main__":
+	#Load database here after  comprehensive data to it
 	database_file = "signature_database.p"
 	hexed_database = load_hex_database(database_file)
-
-	test_wifi_sig = wifi_sig('7c:50:49:27:33:e3')
-	test_wifi_sig.has_probe = 1
-	test_wifi_sig.has_ass = 1
-	test_wifi_sig.ass_sig.htcap = '\x77\x77'
-	test_wifi_sig.ass_sig.httag = '\xaa'
-	test_wifi_sig.probe_sig.htmcs = '\xff\xff\xff\xff'
 	get_diff(hexed_database, test_wifi_sig)
 
 
