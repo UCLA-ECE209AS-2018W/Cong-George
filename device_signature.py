@@ -8,16 +8,17 @@ class signature:
             print("wrong data type!")
             raise ValueError
 
-        self.probe_id = []
-        self.htcap = []
-        self.httag = []
-        self.htmcs = []
-        self.vhtcap = []
-        self.vhtrxmcs = []
-        self.vhttxmcs = []
-        self.extcap = []
-        self.txpow = []
-        self.excap = []
+        #change member type from list[] to string'' for bitwise comparison later
+        self.probe_id = ''
+        self.htcap = ''
+        self.httag = ''
+        self.htmcs = ''
+        self.vhtcap = ''
+        self.vhtrxmcs = ''
+        self.vhttxmcs = ''
+        self.extcap = ''
+        self.txpow = ''
+        self.excap = ''
 
 class wifi_sig:
     sig_count = 0
@@ -56,29 +57,29 @@ def build_WifiSig(file_name, mac_addr):
                         field = packet[Dot11Elt][i]
                         # get probe
                         if field.ID == 221:
-                            wifi_signature.probe_sig.probe_id.append([field.ID, (field.info[0:3], field.info[3])])
+                            wifi_signature.probe_sig.probe_id=([field.ID, (field.info[0:3], field.info[3])])
                         else:
-                            wifi_signature.probe_sig.probe_id.append(field.ID)
+                            wifi_signature.probe_sig.probe_id=(field.ID)
 
                         # get htcap and httag and htmcs
                         if field.ID == 45:
-                            wifi_signature.probe_sig.htcap.append(field.info[0:2])
-                            wifi_signature.probe_sig.httag.append(field.info[2])
-                            wifi_signature.probe_sig.htmcs.append(field.info[3:7])
+                            wifi_signature.probe_sig.htcap=(field.info[0:2])
+                            wifi_signature.probe_sig.httag=(field.info[2])
+                            wifi_signature.probe_sig.htmcs=(field.info[3:7])
 
                         # get vht related signatures
                         if field.ID == 191:
-                            wifi_signature.probe_sig.vhtcap.append(field.info[0:4])
-                            wifi_signature.probe_sig.vhtrxmcs.append(field.info[4:8])
-                            wifi_signature.probe_sig.vhttxmcs.append(field.info[8:12])
+                            wifi_signature.probe_sig.vhtcap=(field.info[0:4])
+                            wifi_signature.probe_sig.vhtrxmcs=(field.info[4:8])
+                            wifi_signature.probe_sig.vhttxmcs=(field.info[8:12])
 
                         # get txpow related signatures
                         if field.ID == 33:
-                            wifi_signature.probe_sig.txpow.append(field.info)
+                            wifi_signature.probe_sig.txpow=(field.info)
 
                         # get txpow related signatures
                         if field.ID == 127:
-                            wifi_signature.probe_sig.excap.append(field.info)
+                            wifi_signature.probe_sig.excap=(field.info)
 
                     except IndexError:
                         break
@@ -93,29 +94,29 @@ def build_WifiSig(file_name, mac_addr):
                         field = packet[Dot11Elt][i]
                         # get probe
                         if field.ID == 221:
-                            wifi_signature.ass_sig.probe_id.append([field.ID, (field.info[0:3], field.info[3])])
+                            wifi_signature.ass_sig.probe_id=([field.ID, (field.info[0:3], field.info[3])])
                         else:
-                            wifi_signature.ass_sig.probe_id.append(field.ID)
+                            wifi_signature.ass_sig.probe_id=(field.ID)
 
                         # get htcap and httag and htmcs
                         if field.ID == 45:
-                            wifi_signature.ass_sig.htcap.append(field.info[0:2])
-                            wifi_signature.ass_sig.httag.append(field.info[3])
-                            wifi_signature.ass_sig.htmcs.append(field.info[4:8])
+                            wifi_signature.ass_sig.htcap=(field.info[0:2])
+                            wifi_signature.ass_sig.httag=(field.info[3])
+                            wifi_signature.ass_sig.htmcs=(field.info[4:8])
 
                         # get vht related signatures
                         if field.ID == 191:
-                            wifi_signature.ass_sig.vhtcap.append(field.info[0:4])
-                            wifi_signature.ass_sig.vhtrxmcs.append(field.info[4:8])
-                            wifi_signature.ass_sig.vhttmcs.append(field.info[8:12])
+                            wifi_signature.ass_sig.vhtcap=(field.info[0:4])
+                            wifi_signature.ass_sig.vhtrxmcs=(field.info[4:8])
+                            wifi_signature.ass_sig.vhttmcs=(field.info[8:12])
 
                         # get txpow related signatures
                         if field.ID == 33:
-                            wifi_signature.ass_sig.txpow.append(field.info)
+                            wifi_signature.ass_sig.txpow=(field.info)
 
                         # get txpow related signatures
                         if field.ID == 127:
-                            wifi_signature.ass_sig.excap.append(field.info)
+                            wifi_signature.ass_sig.excap=(field.info)
 
                     except IndexError:
                         break
