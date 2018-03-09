@@ -6,6 +6,7 @@ from scapy.all import *
 sys.path.append(os.path.abspath("/root/PycharmProjects/EE209AS-Embedded-System-Security"))
 from device_signature import *
 
+
 def deauth(monitor_card, target, AP):
     # initiate deauth attack
     file = "active_track.pcap"
@@ -22,6 +23,7 @@ def deauth(monitor_card, target, AP):
     # build device signature
     new_sig = build_WifiSig(file, target)
     new_sig.display()
+
 
 if __name__ == "__main__":
     target_mac = "7c:50:49:27:33:e3"

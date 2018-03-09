@@ -7,6 +7,7 @@ from scapy.all import *
 sys.path.append(os.path.abspath("/root/PycharmProjects/EE209AS-Embedded-System-Security"))
 from device_signature import *
 
+
 def clear_sig_database(file):
     if os.path.exists(file):
         with open(file, 'rb') as rfp:
@@ -21,6 +22,7 @@ def clear_sig_database(file):
     else:
         raise Exception("file not exist")
 
+
 def save_new_sig(file, wifi_sig, device_name, device_type):
     if os.path.exists(file):
         with open(file, 'rb') as rfp:
@@ -31,7 +33,7 @@ def save_new_sig(file, wifi_sig, device_name, device_type):
         database[device_name] = (device_type, wifi_sig)
 
         with open(file, 'wb') as wfp:
-            pickle.dump(database, wfp)
+            pickle.dump(database, wfp, encoding = 'lating1')
     # if there is no database
     else:
         database = {device_name: (device_type, wifi_sig)}
