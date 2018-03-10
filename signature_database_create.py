@@ -33,7 +33,7 @@ def save_new_sig(file, wifi_sig, device_name, device_type):
         database[device_name] = (device_type, wifi_sig)
 
         with open(file, 'wb') as wfp:
-            pickle.dump(database, wfp, encoding = 'lating1')
+            pickle.dump(database, wfp)
     # if there is no database
     else:
         database = {device_name: (device_type, wifi_sig)}
@@ -69,10 +69,10 @@ def display_database(file):
 
 
 if __name__ == "__main__":
-    sig_file = "Googlehome.pcap"
-    target_mac = "f4:f5:d8:a4:7b:d4"
-    device_name = "Googlehome"
-    device_type = 2  # 0: phone, 1: laptop, 2: IotDevice, 3: other
+    sig_file = "huaweiPhone.pcap"
+    target_mac = "44:6e:e5:9d:72:a3"
+    device_name = "huaweiPhone"
+    device_type = 0  # 0: phone, 1: laptop, 2: IotDevice, 3: other
     database_file = "signature_database.p"
 
     new_sig = build_WifiSig(sig_file, target_mac)

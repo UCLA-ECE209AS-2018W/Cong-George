@@ -8,15 +8,14 @@ class signature:
             print("wrong data type!")
             raise ValueError
 
-        #change member type from list[] to string'' for bitwise comparison later
-        self.probe_id = ''
+        # change member type from list[] to string'' for bitwise comparison later
+        self.probe_id = [] # this needs to be a list!
         self.htcap = ''
         self.httag = ''
         self.htmcs = ''
         self.vhtcap = ''
         self.vhtrxmcs = ''
         self.vhttxmcs = ''
-        self.extcap = ''
         self.txpow = ''
         self.excap = ''
 
@@ -57,9 +56,9 @@ def build_WifiSig(file_name, mac_addr):
                         field = packet[Dot11Elt][i]
                         # get probe
                         if field.ID == 221:
-                            wifi_signature.probe_sig.probe_id=([field.ID, (field.info[0:3], field.info[3])])
+                            wifi_signature.probe_sig.probe_id.append([field.ID, (field.info[0:3], field.info[3])])
                         else:
-                            wifi_signature.probe_sig.probe_id=(field.ID)
+                            wifi_signature.probe_sig.probe_id.append(field.ID)
 
                         # get htcap and httag and htmcs
                         if field.ID == 45:
@@ -94,9 +93,9 @@ def build_WifiSig(file_name, mac_addr):
                         field = packet[Dot11Elt][i]
                         # get probe
                         if field.ID == 221:
-                            wifi_signature.ass_sig.probe_id=([field.ID, (field.info[0:3], field.info[3])])
+                            wifi_signature.ass_sig.probe_id.append([field.ID, (field.info[0:3], field.info[3])])
                         else:
-                            wifi_signature.ass_sig.probe_id=(field.ID)
+                            wifi_signature.ass_sig.probe_id.append(field.ID)
 
                         # get htcap and httag and htmcs
                         if field.ID == 45:
@@ -114,7 +113,7 @@ def build_WifiSig(file_name, mac_addr):
                         if field.ID == 33:
                             wifi_signature.ass_sig.txpow=(field.info)
 
-                        # get txpow related signatures
+                        # get excap related signatures
                         if field.ID == 127:
                             wifi_signature.ass_sig.excap=(field.info)
 
