@@ -45,7 +45,6 @@ def build_WifiSig(file_name, mac_addr):
     print("start to build device wifi signature...")
     for packet in packets:
         if packet.haslayer("Dot11") and packet.addr2 == wifi_signature.mac_addr:
-            print("find target device, building signature...")
             if packet.haslayer("Dot11ProbeReq") and wifi_signature.has_probe == 0:
                 # set has probe bit
                 wifi_signature.has_probe = 1

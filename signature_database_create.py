@@ -67,7 +67,7 @@ def display_database(file):
     else:
         raise Exception("no database file!")
 
-
+"""
 if __name__ == "__main__":
     sig_file = "huaweiPhone.pcap"
     target_mac = "44:6e:e5:9d:72:a3"
@@ -78,3 +78,4 @@ if __name__ == "__main__":
     new_sig = build_WifiSig(sig_file, target_mac)
     save_new_sig(database_file, new_sig, device_name, device_type)
     display_database(database_file)
+"""

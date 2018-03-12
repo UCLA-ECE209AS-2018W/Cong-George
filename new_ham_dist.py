@@ -91,14 +91,14 @@ def ham_dist_judgement(db_file, sig_target):
 
     # if the minimum haming distance is smaller than a threshold
     if min_ham < 10:
-        ret = (min_sig, sig_database[min_sig][0])
+        ret = (min_sig, sig_database[min_sig][0], sig_database[min_sig][1].mac_addr)
         return ret
     else:
         print("unclassified device")
-        ret = ("unknown", -1)
+        ret = ("unknown", -1, None)
         return ret
 
-
+"""
 if __name__ == "__main__":
     db_file = "signature_database.p"
     file1 = "huaweiPhone.pcap"
@@ -137,5 +137,6 @@ if __name__ == "__main__":
     sdc.save_new_sig(db_file, new_sig_i7, device_name="i7", device_type=0)
     sdc.save_new_sig(db_file, new_sig_i6, device_name="i6", device_type=0)
 
-    (ret_dev_name, ret_dev_type) = ham_dist_judgement(db_file, new_sig_i7s2)
-    print(ret_dev_name, ret_dev_type)
+    (ret_dev_name, ret_dev_type, mac_addr) = ham_dist_judgement(db_file, new_sig_i7s2)
+    print(ret_dev_name, ret_dev_type, mac_addr)
+"""
