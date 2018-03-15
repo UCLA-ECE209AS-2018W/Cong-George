@@ -4,6 +4,12 @@ import pickle
 from device_signature import *
 import signature_database_create as sdc
 
+class sig_record:
+    def __init__(self, name, type, mac, time=""):
+        self.name = name
+        self.type = type
+        self.mac = mac
+        self.time = time  # time this device appear in network
 
 # calculate distance for any tagged field
 def field_dist(target_field, src_field):
@@ -91,11 +97,11 @@ def ham_dist_judgement(db_file, sig_target):
 
     # if the minimum haming distance is smaller than a threshold
     if min_ham < 10:
-        ret = (min_sig, sig_database[min_sig][0], sig_database[min_sig][1].mac_addr)
+        ret = sig_record(min_sig, sig_database[min_sig][0], sig_database[min_sig][1].mac_addr)
         return ret
     else:
         print("unclassified device")
-        ret = ("unknown", -1, None)
+        ret = sig_record("unknown", -1, None)
         return ret
 
 """
@@ -122,13 +128,13 @@ if __name__ == "__main__":
     new_sig_i7 = build_WifiSig(file5, target_mac5)
     new_sig_i6 = build_WifiSig(file6, target_mac6)
     new_sig_i7s2 = build_WifiSig(file7, target_mac7)
-    """print(ham_distance(new_sig_i7s, new_sig_i7s2))
+    print(ham_distance(new_sig_i7s, new_sig_i7s2))
     print(ham_distance(new_sig_i7s, new_sig_i6))
     print(ham_distance(new_sig_i7s, new_sig_i7))
     print(ham_distance(new_sig_i7s2, new_sig_i7))
     print(ham_distance(new_sig_i7s2, new_sig_i6))
     new_sig_i7s.display()
-    new_sig_i7s2.display()"""
+    new_sig_i7s2.display()
     sdc.clear_sig_database(db_file)
     sdc.save_new_sig(db_file, new_sig_huawei, device_name="huawei", device_type=0)
     sdc.save_new_sig(db_file, new_sig_i7s, device_name="i7s", device_type=0)

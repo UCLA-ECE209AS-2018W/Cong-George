@@ -36,6 +36,7 @@ class wifi_sig:
         print(self.ass_sig.__dict__)
         print(self.probe_sig.__dict__)
 
+
 def build_WifiSig(file_name, mac_addr):
     # create a instance of wifi signature
     wifi_signature = wifi_sig(mac_addr)
