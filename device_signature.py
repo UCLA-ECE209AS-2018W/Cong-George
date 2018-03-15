@@ -37,15 +37,15 @@ class wifi_sig:
         print(self.probe_sig.__dict__)
 
 
-def build_WifiSig(file_name, mac_addr):
+def build_WifiSig(file_name, mac_addr, ignore_mac=0):
     # create a instance of wifi signature
-    wifi_signature = wifi_sig(mac_addr)
+    wifi_signature = wifi_sig(mac_addr) if ignore_mac == 0 else wifi_sig("ff:ff:ff:ff:ff:ff")
 
     # read in packets
     packets = rdpcap(file_name)
     print("start to build device wifi signature...")
     for packet in packets:
-        if packet.haslayer("Dot11") and packet.addr2 == wifi_signature.mac_addr:
+        if packet.haslayer("Dot11") and (packet.addr2 == wifi_signature.mac_addr or ignore_mac == 1):
             if packet.haslayer("Dot11ProbeReq") and wifi_signature.has_probe == 0:
                 # set has probe bit
                 wifi_signature.has_probe = 1
