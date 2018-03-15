@@ -88,15 +88,15 @@ def device_tracking(ap_mac, channel, mon_card='wlan1mon', duration='60', file_na
 
 # build the wifi signature for a device according to its mac address and sniffing packets file
 # which contains its probe request and association request
-def build_WifiSig(file_name, mac_addr):
+def build_WifiSig(file_name, mac_addr, ignore_mac=0):
     # create a instance of wifi signature
-    wifi_signature = wifi_sig(mac_addr)
+    wifi_signature = wifi_sig(mac_addr) if ignore_mac == 0 else wifi_sig("ff:ff:ff:ff:ff:ff")
 
     # read in packets
     packets = rdpcap(file_name)
     print("start to build device wifi signature...")
     for packet in packets:
-        if packet.haslayer("Dot11") and packet.addr2 == wifi_signature.mac_addr:
+        if packet.haslayer("Dot11") and (packet.addr2 == wifi_signature.mac_addr or ignore_mac == 1):
             if packet.haslayer("Dot11ProbeReq") and wifi_signature.has_probe == 0:
                 # set has probe bit
                 wifi_signature.has_probe = 1
@@ -239,7 +239,21 @@ def display_database(file):
     else:
         raise Exception("no database file!")
         
-
+# read every pcap file in current directory and build their signatures, storing in database file afterwards
+def create_database(db_file, file_path):
+    # clear the db before creation
+    if os.path.exists(db_file): 
+        clear_sig_database(db_file)
+    
+    # insert signature into the database
+    for pcap_file in os.listdir(file_path):
+        new_sig = build_WifiSig(pcap_file, "", ignore_mac=1)
+        save_new_sig(db_file, new_sig, pcap_file, 4)
+    
+    # display after db creation finishes
+    display_database(db_file)
+    
+    
 # calculate distance for any tagged field
 def field_dist(target_field, src_field):
     if type(target_field) is not int and type(src_field) is not int:
