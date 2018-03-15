@@ -6,8 +6,7 @@ from scapy.all import *
 # import my own files function
 sys.path.append(os.path.abspath("/root/PycharmProjects/EE209AS-Embedded-System-Security"))
 from device_signature import *
-
-
+    
 def clear_sig_database(file):
     if os.path.exists(file):
         with open(file, 'rb') as rfp:
@@ -67,6 +66,20 @@ def display_database(file):
     else:
         raise Exception("no database file!")
 
+# read every pcap file in current directory and build their signatures, storing in database file afterwards
+def create_database(db_file, file_path):
+    # clear the db before creation
+    if os.path.exists(db_file): 
+        clear_sig_database(db_file)
+    
+    # insert signature into the database
+    for pcap_file in os.listdir(file_path):
+        new_sig = build_WifiSig(pcap_file, "", ignore_mac=1)
+        save_new_sig(db_file, new_sig, pcap_file, 4)
+    
+    # display after db creation finishes
+    display_database(db_file)
+    
 """
 if __name__ == "__main__":
     sig_file = "huaweiPhone.pcap"
