@@ -1,0 +1,10 @@
+
+BSSID, First time seen, Last time seen, channel, Speed, Privacy, Cipher, Authentication, Power, # beacons, # IV, LAN IP, ID-length, ESSID, Key
+08:95:2A:6E:18:B8, 2018-03-15 09:41:15, 2018-03-15 09:41:44,  2,  54, WPA2 OPN, CCMP,PSK, -44,      278,      303,   0.  0.  0.  0,   9, TC8715DB2, 
+
+Station MAC, First time seen, Last time seen, Power, # packets, BSSID, Probed ESSIDs
+70:5A:0F:56:8B:5B, 2018-03-15 09:41:20, 2018-03-15 09:41:29, -50,        8, 08:95:2A:6E:18:B8,
+C4:B3:01:C0:D7:55, 2018-03-15 09:41:15, 2018-03-15 09:41:44, -39,       44, 08:95:2A:6E:18:B8,
+F4:F5:D8:A4:7B:D4, 2018-03-15 09:41:15, 2018-03-15 09:41:42, -21,      336, 08:95:2A:6E:18:B8,
+F8:59:71:84:03:0A, 2018-03-15 09:41:40, 2018-03-15 09:41:42,   0,       66, 08:95:2A:6E:18:B8,
+

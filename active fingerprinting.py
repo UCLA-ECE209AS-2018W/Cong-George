@@ -9,6 +9,7 @@ from scapy.all import *
 from device_signature import *
 from new_ham_dist import *
 from device_tracking import *
+from monitor_card_setup import *
 
 
 class sig_stats:
@@ -29,11 +30,13 @@ class sig_stats:
             self.all_stats[self.predef_type[dev.type]] += 1
 
     def active_stats_display(self):
+        self.update_active_stats()
         for keys, value in self.active_stats.items():
             print("current period stats: ")
             print(str(value) + keys)
 
     def all_dev_display(self):
+        self.update_all_stats()
         for dev in self.all_dev_list:
             print(dev.name + "," + self.predef_type[dev.type] + "," + dev.mac + "," + dev.time)
 
@@ -75,9 +78,9 @@ def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='trackin
     """os.system("timeout " + duration + " tcpdump -i " + monitor_card + " -s 0 -w " + pck_file + ' -v '
               + "type mgt and not subtype beacon")"""
 
-    rule_for_mode0 = "ether host " + ap_addr.lower() + "type mgt and not subtype beacon"
-    rule_for_mode1 = "ether host " + ap_addr.lower() + "type data and type mgt and not subtype beacon"
-    subprocess.check_call("timeout " + duration + " tcpdump -i " + monitor_card + " -s 1000" + " -w " + pck_file + " -v " +
+    rule_for_mode0 = "type mgt and subtype assoc-req or subtype probe-req"
+    rule_for_mode1 = "type data or subtype assoc-req or subtype probe-req"
+    subprocess.call("timeout " + duration + " tcpdump -i " + monitor_card + " -s 1000" + " -w " + pck_file + " -v " +
                      rule_for_mode0 if mode == 0 else rule_for_mode1, shell=True)
 
     packets = rdpcap(pck_file)
@@ -102,7 +105,6 @@ def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='trackin
         # only do the check when the signature is valid
         if dev_sig.has_probe == 1 and dev_sig.has_ass == 1:
             new_dev = ham_dist_judgement(db_file, dev_sig)
-            new_dev.time = str(datetime.now())
 
             # if the matched device not in the device list already
             if new_dev not in signature_stats.active_dev_list:
@@ -111,6 +113,7 @@ def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='trackin
                 signature_stats.all_dev_list.append(new_dev)
 
                 # log this device apear info
+                new_dev.time = str(datetime.now())
                 with open(signature_stats.log_file, 'a+') as f:
                     f.write(new_dev.name+" "+signature_stats.predef_type[new_dev.type]+" "+
                             new_dev.mac+" "+new_dev.time if new_dev.time is not None else "unknown time"+
@@ -163,7 +166,11 @@ def passive_phase(ap, ap_channel, sig_stats, passive_dur='300', period=10, updat
 
 if __name__ == "__main__":
     ap_mac = '08:95:2a:6e:18:b8'
+    general_card = "wlan1"
     monitor_card = 'wlan1mon'
+
+    # setup the card
+    # monitor_mode_setup(general_card)
 
     # the list to hold current active device
     new_sig_stats = sig_stats()

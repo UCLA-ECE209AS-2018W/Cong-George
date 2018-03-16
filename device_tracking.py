@@ -6,14 +6,16 @@ import time
 
 # return a list of devices connected to a AP
 def device_tracking(ap_mac, channel, mon_card='wlan1mon', duration='60', file_name = 'dev_summary'):
+    print("Scan for devices in current network...")
     devices = []
 
     # save duration-second scanning result to a csv file
     os.system('rm ' + file_name + '*')
+    FNULL = open(os.devnull, 'w')
     subprocess.call('timeout ' + duration + ' airodump-ng -w ' + file_name +
                                     ' --output-format csv -I 5 --ignore-negative-one ' +
                                     ' -c ' + channel + ' --bssid ' + ap_mac + ' '
-                                    + mon_card, shell=True)
+                                    + mon_card, shell=True, stdout=FNULL, stderr=subprocess.STDOUT)
     '''
     subprocess.call('timeout ' + duration + ' airodump-ng -w ' + file_name +
              ' --output-format csv -I 5 --ignore-negative-one ' +

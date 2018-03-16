@@ -122,6 +122,7 @@ def build_WifiSig(file_name, mac_addr, ignore_mac=0):
 
     # print out signature
     print("wifi signature build finish!")
+    wifi_signature.display()
     return wifi_signature
 
 """
