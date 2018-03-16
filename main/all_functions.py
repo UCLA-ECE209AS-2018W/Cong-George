@@ -334,8 +334,12 @@ def ham_dist_judgement(db_file, sig_target):
     min_sig = "unknown"
     for sig in sig_database.keys():
         ham_dist = ham_distance(sig_target, sig_database[sig][1])
+        
+        # if ham_dist is 0, return immediately
+        if ham_dist == 0:
+            return sig_record(min_sig, sig_database[sig][0], sig_database[sig][1].mac_addr)
         # take note the min ham item in database
-        if ham_dist < min_ham:
+        elif ham_dist < min_ham:
             min_ham = ham_dist
             min_sig = sig
 
