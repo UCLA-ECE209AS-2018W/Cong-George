@@ -1,6 +1,3 @@
-import os
-import sys
-import pickle
 from scapy.all import *
 
 # import my own files function

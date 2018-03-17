@@ -1,6 +1,3 @@
-import sys
-import os
-import pickle
 from device_signature import *
 import signature_database_create as sdc
 

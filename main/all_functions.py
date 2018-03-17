@@ -499,3 +499,6 @@ def passive_phase(ap, sig_stats, passive_dur='300', period=10, update_fre=6):
                         sig_stats.active_stats["unknown"])
             fp.write(info1)
             fp.write(info2)
+            # log active devices in this period
+            for dev_info in sig_stats.active_dev_list:
+                fp.write("Active device: name {} type {} mac {}".format(dev_info.name, dev_info.type, dev_info.mac))

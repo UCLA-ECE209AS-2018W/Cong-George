@@ -1,8 +1,6 @@
 import pickle
 import os
-import sys
 from device_signature import *
-import signature_database_create as sdc
 
 
 class hexed_wifi_sig:
