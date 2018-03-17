@@ -1,9 +1,17 @@
 class sig_record:
-    def __init__(self, name, type, mac, time=""):
+    def __init__(self, name, type, mac):
         self.name = name
         self.type = type
         self.mac = mac
-        self.time = time  # time this device appear in network
+
+    def __eq__(self, other):
+        return self.name == other.name and self.type == other.type and self.mac == other.mac
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def sig_record_display(self):
+        print("dev name: {} type: {} mac: {}".format(self.name, self.type, self.mac))
 
 
 class signature:
@@ -15,7 +23,7 @@ class signature:
             raise ValueError
 
         # change member type from list[] to string'' for bitwise comparison later
-        self.probe_id = [] # this needs to be a list!
+        self.probe_id = []  # this needs to be a list!
         self.htcap = ''
         self.httag = ''
         self.htmcs = ''
@@ -52,20 +60,30 @@ class sig_stats:
         self.active_dev_list = []
         self.all_dev_list = []
         self.log_file = "device_log.txt"
+        self.final_result_file = "final_result_log.txt"
 
     def update_active_stats(self):
+        # reset before update
+        for key in self.active_stats:
+            self.active_stats[key] = 0
+
         for dev in self.active_dev_list:
             self.active_stats[self.predef_type[dev.type]] += 1
 
     def update_all_stats(self):
+        # reset before update
+        for key in self.all_stats:
+            self.all_stats[key] = 0
+
         for dev in self.all_dev_list:
             self.all_stats[self.predef_type[dev.type]] += 1
 
     def active_stats_display(self):
+        self.update_active_stats()
         for keys, value in self.active_stats.items():
-            print("current period stats: ")
             print(str(value) + keys)
 
     def all_dev_display(self):
+        self.update_all_stats()
         for dev in self.all_dev_list:
-            print(dev.name + "," + self.predef_type[dev.type] + "," + dev.mac + "," + dev.time)
+            print(dev.name + "," + self.predef_type[dev.type] + "," + dev.mac)

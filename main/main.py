@@ -4,12 +4,15 @@ from all_objects import *
 
 # This is the main file of this project
 if __name__ == "__main__":
-    ap_mac = '08:95:2a:6e:18:b8'
+    Ap_mac = '08:95:2a:6e:18:b8'
+    general_card = 'wlan1'
     monitor_card = 'wlan1mon'
+
+    # monitor_mode_setup(general_card)
 
     # the list to hold current active device
     new_sig_stats = sig_stats()
 
     # enter active phase
-    active_phase(ap_mac, monitor_card, new_sig_stats)
-    # passive_phase(ap_mac, "2", new_sig_stats, passive_dur='300', period=3, update_fre=4)
+    active_phase(Ap_mac, monitor_card, new_sig_stats)
+    passive_phase(Ap_mac, new_sig_stats, passive_dur='300', period=4, update_fre=6)

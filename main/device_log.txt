@@ -1,0 +1,4 @@
+dev mac, type computer, mac: c4:b3:01:c0:d7:55 enter network at: 2018-03-17 01:15:26.437176
+dev i7, type cellphone, mac: 18:65:90:7f:2e:e2 enter network at: 2018-03-17 01:17:31.658122
+dev i7s, type cellphone, mac: 7c:50:49:27:33:e3 enter network at: 2018-03-17 01:21:34.888160
+dev googlehome, type IoT device, mac: f4:f5:d8:a4:7b:d4 enter network at: 2018-03-17 01:23:40.982722

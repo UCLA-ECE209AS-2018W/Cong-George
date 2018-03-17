@@ -6,6 +6,8 @@ import csv
 import pickle
 from datetime import datetime
 from scapy.all import *
+from all_objects import *
+
 
 # Setup the network card for packets sniffing
 def monitor_mode_setup(mon_card):
@@ -19,19 +21,19 @@ def monitor_mode_setup(mon_card):
     os.system('airmon-ng start ' + monitor_card)
     os.system('ifconfig ' + monitor_card + ' up')
     os.system('ifconfig')
-    
+
+
 # find the AP with the strongest SNR and set the monitor channel to that AP
-def ap_scanning(mon_card='wlan1mon', duration='10', file='ap_info'):
-    file_path = os.system('pwd')
+def ap_scanning(mon_card='wlan1mon', duration='10', file_name='ap_info'):
     channel = ''
-    SSID = ''
+    chosen_bssid = ''
 
     # save 5-second scanning result to a csv file
     print('scan for nearby AP...')
     os.system('rm ' + file_name + '*')
-    os.system('timeout ' + duration + ' airodump-ng -w ' + file +
+    subprocess.Popen('timeout ' + duration + ' airodump-ng -w ' + file_name +
                                     ' --output-format csv -I 5 --ignore-negative-one '
-                                    + mon_card)
+                                    + mon_card, shell=True).wait()
 
     reader = csv.reader(open(file_name + '-01.csv'))
     list_reader = list(reader)
@@ -63,18 +65,19 @@ def ap_scanning(mon_card='wlan1mon', duration='10', file='ap_info'):
     
     return chosen_bssid, channel
 
+
 # return a list of devices connected to a AP
-def device_tracking(ap_mac, channel, mon_card='wlan1mon', duration='60', file_name = 'dev_summary'):
+def device_tracking(ap_mac, channel, mon_card='wlan1mon', duration='180', file_name='dev_summary'):
+    print("Scan devices in current network for 3 mins...")
     devices = []
 
     # save duration-second scanning result to a csv file
-    subprocess.call('rm ' + file_name + '*', shell=True)
-    FNULL = open (os.devnull, 'w')
+    os.system('rm ' + file_name + '*')
+    FNULL = open(os.devnull, 'w')
     subprocess.call('timeout ' + duration + ' airodump-ng -w ' + file_name +
                                     ' --output-format csv -I 5 --ignore-negative-one ' +
                                     ' -c ' + channel + ' --bssid ' + ap_mac + ' '
                                     + mon_card, shell=True, stdout=FNULL, stderr=subprocess.STDOUT)
-
     reader = csv.reader(open(file_name + '-01.csv'))
     list_reader = list(reader)
     ap_data = list_reader[2][-6]
@@ -173,6 +176,7 @@ def build_WifiSig(file_name, mac_addr, ignore_mac=0):
 
     # print out signature
     print("wifi signature build finish!")
+    wifi_signature.display()
     return wifi_signature
 
 
@@ -214,16 +218,14 @@ def save_new_sig(file, wifi_sig, device_name, device_type):
 # load the database from database file
 def load_sig_database(file):
     if os.path.exists(file):
-        with open(file, 'rb') as rfp:
+        with open(file, 'rb+') as rfp:
             database = pickle.load(rfp)
 
             if len(database) == 0:
                 print("Warning: database empty!")
-
         return database
     else:
         raise Exception("no database file!")
-
 
 # display database content
 def display_database(file):
@@ -238,7 +240,8 @@ def display_database(file):
             value[1].display()
     else:
         raise Exception("no database file!")
-        
+
+
 # read every pcap file in current directory and build their signatures, storing in database file afterwards
 def create_database(db_file, file_path):
     # clear the db before creation
@@ -327,7 +330,7 @@ def ham_distance(sig_target, sig_src):
 
 # this return a tuple (device name, device type) -1 stands for unkonwn type
 def ham_dist_judgement(db_file, sig_target):
-    sig_database = sdc.load_sig_database(db_file)
+    sig_database = load_sig_database(db_file)
 
     # start to calculate ham distance with the target sig vs. item in db
     min_ham = 10000  # a very large number
@@ -337,7 +340,8 @@ def ham_dist_judgement(db_file, sig_target):
         
         # if ham_dist is 0, return immediately
         if ham_dist == 0:
-            return sig_record(min_sig, sig_database[sig][0], sig_database[sig][1].mac_addr)
+            ret = sig_record(sig, sig_database[sig][0], sig_database[sig][1].mac_addr)
+            return ret
         # take note the min ham item in database
         elif ham_dist < min_ham:
             min_ham = ham_dist
@@ -345,11 +349,10 @@ def ham_dist_judgement(db_file, sig_target):
 
     # if the minimum haming distance is smaller than a threshold
     if min_ham < 10:
-        ret = sig_record(min_sig, sig_database[min_sig][0], sig_database[min_sig][1].mac_addr)
-        return ret
+        return sig_record(min_sig, sig_database[min_sig][0], sig_database[min_sig][1].mac_addr)
     else:
         print("unclassified device")
-        ret = sig_record("unknown", -1, None)
+        ret = sig_record("unknown", -1, sig_target.mac_addr)
         return ret
         
         
@@ -365,19 +368,33 @@ def deauth(monitor_card, target, AP, duration='180'):
                      shell=True, stdout=FNULL, stderr=subprocess.STDOUT)
 
 
+# simple utility function to check
+def obj_in_list(obj, obj_list):
+    for item in obj_list:
+        if obj == item:
+            return True
+    return False
+
+
 # do duration/60-minutes (default 5 min) of packet sniffing and log any connection attempt
 # if find a association request, build its signature and perform the checking in database
 # return a updated new list of device in this time period if mode 1
 # mode 0: only scan for Probe Request/Ass packs, mode 1: also scan for data packets and log new device
 def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='tracking.pcap',
-                     db_file="signature_database.p", mode=0):
+                     monitor_card='wlan1mon', db_file="signature_database.p", mode=0):
     print("Perform passive tracking...")
+    rule_for_mode0 = "type mgt and subtype assoc-req or subtype probe-req"
+    rule_for_mode1 = "type data or subtype assoc-req or subtype probe-req"
 
-    rule_for_mode0 = "ether host " + ap_addr.lower() + "type mgt and not subtype beacon"
-    rule_for_mode1 = "ether host " + ap_addr.lower() + "type data and type mgt and not subtype beacon"
-    
-    subprocess.check_call("timeout " + duration + " tcpdump -i " + monitor_card + " -s 1000" + " -w " + pck_file + " -v " +
-                     rule_for_mode0 if mode == 0 else rule_for_mode1, shell=True)
+    if mode == 0:
+        subprocess.Popen("timeout " + duration + " tcpdump -i " + monitor_card + " -s 1000" + " -w " + pck_file + " -v " +
+                         rule_for_mode0, shell=True,
+                         cwd=os.path.dirname(os.path.realpath(__file__))).wait()
+    else:
+        print("mode 1")
+        subprocess.Popen("timeout " + duration + " tcpdump -i " + monitor_card + " -s 1000" + " -w " + pck_file + " -v " +
+                        rule_for_mode1, shell=True,
+                        cwd=os.path.dirname(os.path.realpath(__file__))).wait()
 
     packets = rdpcap(pck_file)
 
@@ -395,25 +412,28 @@ def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='trackin
                 new_dev_list.append(pack.addr2)
 
     # second build signature for these devices
+    if len(ass_request) > 0:
+        print(str(len(ass_request)) + " Devices joined the network!")
+
     for dev_mac in ass_request:
         dev_sig = build_WifiSig(pck_file, dev_mac)
 
         # only do the check when the signature is valid
         if dev_sig.has_probe == 1 and dev_sig.has_ass == 1:
             new_dev = ham_dist_judgement(db_file, dev_sig)
-            new_dev.time = str(datetime.now())
+            print("hamming_dist result: ", new_dev.sig_record_display())
 
             # if the matched device not in the device list already
-            if new_dev not in signature_stats.active_dev_list:
+            if not obj_in_list(new_dev, signature_stats.active_dev_list):
                 signature_stats.active_dev_list.append(new_dev)
-            if new_dev not in signature_stats.all_dev_list:
+            if not obj_in_list(new_dev, signature_stats.all_dev_list):
                 signature_stats.all_dev_list.append(new_dev)
 
-                # log this device apear info
+                # log this device apear info (when does it enter this network)
                 with open(signature_stats.log_file, 'a+') as f:
-                    f.write(new_dev.name+" "+signature_stats.predef_type[new_dev.type]+" "+
-                            new_dev.mac+" "+new_dev.time if new_dev.time is not None else "unknown time"+
-                            "\n")
+                    info = "dev {}, type {}, mac: {} enter network at: {}\n".format(new_dev.name,
+                          signature_stats.predef_type[new_dev.type], new_dev.mac, str(datetime.now()))
+                    f.write(info)
 
     if mode != 0:
         return new_dev_list
@@ -426,7 +446,7 @@ def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='trackin
 def active_phase(ap, mon_card, sig_stats):
     print("enter active phase")
     # first do a device scanning
-    device_list = device_tracking(ap_mac, channel="2", duration='30')
+    device_list = device_tracking(ap, channel="2", duration='180')
     print(device_list)
 
     # for each device, launch deauth attack and do active fingerprinting
@@ -437,28 +457,45 @@ def active_phase(ap, mon_card, sig_stats):
     sig_stats.active_stats_display()
     sig_stats.all_dev_display()
     print("active phase exit")
- 
- 
+
+
 # passive_dur: passive monitoring duration (s)
 # update_fre: how many monitor cycle between adjacent updates
 # period: total update times
 # running time: (passive_dur/60)*update_fre*period minutes
-def passive_phase(ap, ap_channel, sig_stats, passive_dur='300', period=10, update_fre=6):
+def passive_phase(ap, sig_stats, passive_dur='300', period=10, update_fre=6):
+    print("Enter passive phase...")
     # loop for passive monitoring
     for i in range(period):
-        for j in range(update_fre):
+        print("passive scanning progress: " + str(i) + "/" + str(period))
+        for j in range(update_fre-1):
+            print("current slice time: " + str(datetime.now()))
             # perform passive tracking every passive_dur/60 minute
             passive_tracking(sig_stats, ap_addr=ap, duration=passive_dur, mode=0)
 
-        # display active device info after each period
-        sig_stats.active_stats_display()
-        sig_stats.all_dev_display()
-        # dev_list = device_tracking(ap, channel=ap_channel, duration='30')
         # Also do a scan about current devices in network
         dev_list = passive_tracking(sig_stats, ap_addr=ap, duration=passive_dur, mode=1)
+        print(dev_list)
 
         # if previously active device not in network anymore
         # remove that dev from active dev list
         for dev_info in sig_stats.active_dev_list:
             if dev_info.mac not in dev_list:
                 sig_stats.active_dev_list.remove(dev_info)
+
+        # display active device info after each period
+        print("Current active device:")
+        sig_stats.active_stats_display()
+        print("All devices:")
+        sig_stats.all_dev_display()
+
+        # log the house occupancy info after each scanning period
+        with open(sig_stats.final_result_file, "a+") as fp:
+            info1 = "house Occupency at {}: {}\n".format(
+                str(datetime.now()), "Yes" if sig_stats.active_stats["cellphone"] != 0 else "No")
+            info2 = "Current active device stats: {} cellphone, {} computer, {} Iot, {} other, {} unknown\n"\
+                .format(sig_stats.active_stats["cellphone"],sig_stats.active_stats["computer"],
+                        sig_stats.active_stats["IoT device"],sig_stats.active_stats["other"],
+                        sig_stats.active_stats["unknown"])
+            fp.write(info1)
+            fp.write(info2)

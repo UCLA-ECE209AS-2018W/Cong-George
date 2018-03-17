@@ -1,0 +1,8 @@
+house Occupency at 2018-03-17 01:54:51.671114: Yes
+Current active device stats: 2 cellphone, 1 computer, 1 Iot, 0 other, 0 unknown
+house Occupency at 2018-03-17 02:26:01.565516: Yes
+Current active device stats: 2 cellphone, 1 computer, 1 Iot, 0 other, 0 unknown
+house Occupency at 2018-03-17 02:57:22.708633: Yes
+Current active device stats: 2 cellphone, 1 computer, 1 Iot, 0 other, 0 unknown
+house Occupency at 2018-03-17 03:29:32.947463: Yes
+Current active device stats: 2 cellphone, 1 computer, 1 Iot, 0 other, 0 unknown
