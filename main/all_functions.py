@@ -1,9 +1,5 @@
-import os
-import time
-import subprocess
 import operator
 import csv
-import pickle
 from datetime import datetime
 from scapy.all import *
 from all_objects import *
@@ -226,6 +222,7 @@ def load_sig_database(file):
         return database
     else:
         raise Exception("no database file!")
+
 
 # display database content
 def display_database(file):
@@ -500,5 +497,6 @@ def passive_phase(ap, sig_stats, passive_dur='300', period=10, update_fre=6):
             fp.write(info1)
             fp.write(info2)
             # log active devices in this period
+            fp.write("Active devices: ")
             for dev_info in sig_stats.active_dev_list:
-                fp.write("Active device: name {} type {} mac {}".format(dev_info.name, dev_info.type, dev_info.mac))
+                fp.write("name {} type {} mac {}".format(dev_info.name, dev_info.type, dev_info.mac))

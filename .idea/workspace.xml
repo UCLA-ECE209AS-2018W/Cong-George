@@ -5,39 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="043a6f17-1559-4755-a1d1-ed0dd0731181" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ee209as.iml" afterPath="$PROJECT_DIR$/.idea/ee209as.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/AP scanning.py" afterPath="$PROJECT_DIR$/Development Files/AP scanning.py" />
-      <change beforePath="$PROJECT_DIR$/Googlehome.pcap" afterPath="$PROJECT_DIR$/Development Files/Googlehome.pcap" />
-      <change beforePath="$PROJECT_DIR$/Kmeans.py" afterPath="$PROJECT_DIR$/Development Files/Kmeans.py" />
-      <change beforePath="$PROJECT_DIR$/Probe_request_tracking.py" afterPath="$PROJECT_DIR$/Development Files/Probe_request_tracking.py" />
-      <change beforePath="$PROJECT_DIR$/active fingerprinting.py" afterPath="$PROJECT_DIR$/Development Files/active fingerprinting.py" />
-      <change beforePath="$PROJECT_DIR$/active_track.pcap" afterPath="$PROJECT_DIR$/Development Files/active_track.pcap" />
-      <change beforePath="$PROJECT_DIR$/ap_info-01.csv" afterPath="$PROJECT_DIR$/Development Files/ap_info-01.csv" />
-      <change beforePath="$PROJECT_DIR$/ass_test.pcap" afterPath="$PROJECT_DIR$/Development Files/ass_test.pcap" />
-      <change beforePath="$PROJECT_DIR$/ass_test2.pcap" afterPath="$PROJECT_DIR$/Development Files/ass_test2.pcap" />
-      <change beforePath="$PROJECT_DIR$/dev_summary-01.csv" afterPath="$PROJECT_DIR$/Development Files/dev_summary-01.csv" />
-      <change beforePath="$PROJECT_DIR$/device_log.txt" afterPath="$PROJECT_DIR$/Development Files/device_log.txt" />
-      <change beforePath="$PROJECT_DIR$/device_signature.py" afterPath="$PROJECT_DIR$/Development Files/device_signature.py" />
-      <change beforePath="$PROJECT_DIR$/device_tracking.py" afterPath="$PROJECT_DIR$/Development Files/device_tracking.py" />
-      <change beforePath="$PROJECT_DIR$/hamming_dist.py" afterPath="$PROJECT_DIR$/Development Files/hamming_dist.py" />
-      <change beforePath="$PROJECT_DIR$/huaweiPhone.pcap" afterPath="$PROJECT_DIR$/Development Files/huaweiPhone.pcap" />
-      <change beforePath="$PROJECT_DIR$/iphone6.pcap" afterPath="$PROJECT_DIR$/Development Files/iphone6.pcap" />
-      <change beforePath="$PROJECT_DIR$/iphone7.pcap" afterPath="$PROJECT_DIR$/Development Files/iphone7.pcap" />
-      <change beforePath="$PROJECT_DIR$/iphone7plus.pcap" afterPath="$PROJECT_DIR$/Development Files/iphone7plus.pcap" />
-      <change beforePath="$PROJECT_DIR$/iphone7plus2.pcap" afterPath="$PROJECT_DIR$/Development Files/iphone7plus2.pcap" />
-      <change beforePath="$PROJECT_DIR$/mac.pcap" afterPath="$PROJECT_DIR$/Development Files/mac.pcap" />
       <change beforePath="$PROJECT_DIR$/main/all_functions.py" afterPath="$PROJECT_DIR$/main/all_functions.py" />
+      <change beforePath="$PROJECT_DIR$/main/dev_summary-01.csv" afterPath="$PROJECT_DIR$/main/dev_summary-01.csv" />
+      <change beforePath="$PROJECT_DIR$/main/device_log.txt" afterPath="$PROJECT_DIR$/main/device_log.txt" />
+      <change beforePath="$PROJECT_DIR$/main/final_result_log.txt" afterPath="$PROJECT_DIR$/main/final_result_log.txt" />
       <change beforePath="$PROJECT_DIR$/main/main.py" afterPath="$PROJECT_DIR$/main/main.py" />
-      <change beforePath="$PROJECT_DIR$/monitor_card_setup.py" afterPath="$PROJECT_DIR$/Development Files/monitor_card_setup.py" />
-      <change beforePath="$PROJECT_DIR$/new_ham_dist.py" afterPath="$PROJECT_DIR$/Development Files/new_ham_dist.py" />
-      <change beforePath="$PROJECT_DIR$/output.txt" afterPath="$PROJECT_DIR$/Development Files/output.txt" />
-      <change beforePath="$PROJECT_DIR$/scapy packets.py" afterPath="$PROJECT_DIR$/Development Files/scapy packets.py" />
-      <change beforePath="$PROJECT_DIR$/signature_database.p" afterPath="$PROJECT_DIR$/Development Files/signature_database.p" />
-      <change beforePath="$PROJECT_DIR$/signature_database_create.py" afterPath="$PROJECT_DIR$/Development Files/signature_database_create.py" />
-      <change beforePath="$PROJECT_DIR$/tcpdump packets.py" afterPath="$PROJECT_DIR$/Development Files/tcpdump packets.py" />
-      <change beforePath="$PROJECT_DIR$/test.pcap" afterPath="$PROJECT_DIR$/Development Files/test.pcap" />
-      <change beforePath="$PROJECT_DIR$/tmp.pcap" afterPath="$PROJECT_DIR$/Development Files/tmp.pcap" />
-      <change beforePath="$PROJECT_DIR$/tracking.pcap" afterPath="$PROJECT_DIR$/Development Files/tracking.pcap" />
+      <change beforePath="$PROJECT_DIR$/main/tracking.pcap" afterPath="$PROJECT_DIR$/main/tracking.pcap" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -66,8 +41,8 @@
       <file leaf-file-name="final_result_log.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/final_result_log.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,18 +51,8 @@
       <file leaf-file-name="device_log.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/device_log.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="35" lean-forward="false" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tracking.pcap" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/tracking.pcap">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="63" lean-forward="false" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,21 +61,31 @@
       <file leaf-file-name="all_objects.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/all_objects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+            <state relative-caret-position="-1228">
+              <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="all_functions.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="all_functions.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/all_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="493" column="51" lean-forward="false" selection-start-line="493" selection-start-column="51" selection-end-line="493" selection-end-column="51" />
+            <state relative-caret-position="89">
+              <caret line="216" column="27" lean-forward="true" selection-start-line="216" selection-start-column="27" selection-end-line="216" selection-end-column="27" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="device_signature.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Development Files/device_signature.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,16 +113,20 @@
       <find>passive_tracking</find>
       <find>no</find>
       <find>no database</find>
-      <find>active</find>
       <find>device_tracking</find>
       <find>wifi signature build</find>
       <find>unclass</find>
       <find>ham_distance</find>
       <find>hamming_dist</find>
-      <find>build</find>
       <find>hamm</find>
       <find>remove</find>
       <find>write</find>
+      <find>device_signature</find>
+      <find>impor</find>
+      <find>device_signa</find>
+      <find>device_sig</find>
+      <find>active</find>
+      <find>build</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -171,11 +150,11 @@
         <option value="$PROJECT_DIR$/device_signature.py" />
         <option value="$PROJECT_DIR$/device_log.txt" />
         <option value="$PROJECT_DIR$/active fingerprinting.py" />
-        <option value="$PROJECT_DIR$/main/all_objects.py" />
         <option value="$PROJECT_DIR$/main/device_log.txt" />
         <option value="$PROJECT_DIR$/main/final_result_log.txt" />
-        <option value="$PROJECT_DIR$/main/all_functions.py" />
         <option value="$PROJECT_DIR$/main/main.py" />
+        <option value="$PROJECT_DIR$/main/all_objects.py" />
+        <option value="$PROJECT_DIR$/main/all_functions.py" />
       </list>
     </option>
   </component>
@@ -208,6 +187,16 @@
               <item name="EE209AS-Embedded-System-Security" type="b2602c69:ProjectViewProjectNode" />
               <item name="EE209AS-Embedded-System-Security" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="EE209AS-Embedded-System-Security" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE209AS-Embedded-System-Security" type="462c0819:PsiDirectoryNode" />
+              <item name="Development Files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EE209AS-Embedded-System-Security" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE209AS-Embedded-System-Security" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -217,7 +206,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -525,7 +514,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22916667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3538961" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3538961" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -551,13 +540,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Development Files/tcpdump packets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Development Files/AP scanning.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -752,26 +734,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/device_signature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1553">
-          <caret line="29" column="43" lean-forward="true" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Development Files/new_ham_dist.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="28" lean-forward="true" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/signature_database_create.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="72" column="17" lean-forward="false" selection-start-line="72" selection-start-column="17" selection-end-line="72" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -804,51 +770,75 @@
     <entry file="file://$PROJECT_DIR$/main/tracking.pcap">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="63" lean-forward="false" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
+          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/final_result_log.txt">
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/214616685/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/device_log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" lean-forward="false" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        <state relative-caret-position="116">
+          <caret line="729" column="8" lean-forward="false" selection-start-line="729" selection-start-column="8" selection-end-line="729" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/all_objects.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        <state relative-caret-position="-1228">
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Development Files/signature_database_create.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/device_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/final_result_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Development Files/device_signature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/all_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="493" column="51" lean-forward="false" selection-start-line="493" selection-start-column="51" selection-end-line="493" selection-end-column="51" />
+        <state relative-caret-position="89">
+          <caret line="216" column="27" lean-forward="true" selection-start-line="216" selection-start-column="27" selection-end-line="216" selection-end-column="27" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
