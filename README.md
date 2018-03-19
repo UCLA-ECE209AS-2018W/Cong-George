@@ -1,4 +1,4 @@
-# ECE209AS Course project: House Occupacy Detection Via wifi packets sniffing
+# ECE209AS Course project: House Occupacy Detection Via WiFi Packets Sniffing
 
 
 
