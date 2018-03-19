@@ -29,4 +29,7 @@ MLME compromises a number of different types of packets with fixed parameters in
 **Association frame**: sent by clients to ask the AP to add clients themselved to the WLAN.  
 Our approach relies on these two frame to identify devices and infer house acticity.
 
+* **WiFi Signature**  
+In order for AP to handle probe and association request, AP examines the serires tagged parameters from clientsextracting those and used them as WiFi signatures. Since wifi signatures reflects a combination of the specific wifi chipset, device driver, WPA supplicant and PCB layout of the client device, they are capable of identidying differnt devices. The figure below shows the wifi signatures of differnt mobile phones.
+
 
