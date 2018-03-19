@@ -37,5 +37,15 @@ In order for AP to handle probe and association request, AP examines the serires
 [frame1]:https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/sig.png  
 
 ## **Method & Implementation**
+As mentioned in the previous section, the approach we are adopting is first we will collect all the packets from any devices nearby, and from the 802.11 frame we will extract probe frame and assocaition frame to form the WiFi signature and identify the devices that send out probe and association frame most frequnctly within in a period time that is sufficiently long. After we have identify those devices, we will regard a house or room being occupied when those all those devices are actively sending probe and assotiation frames.
+
+* **Kali Linux Environment** 
+* **WiFi Packets Sniffing**
+* **WiFi Signature Extraction**
+* **Occupancy Detection**
+
+## **Results and Discussion**
+
+## Future Work
 
 
