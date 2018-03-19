@@ -32,4 +32,10 @@ Our approach relies on these two frame to identify devices and infer house actic
 * **WiFi Signature**  
 In order for AP to handle probe and association request, AP examines the serires tagged parameters from clientsextracting those and used them as WiFi signatures. Since wifi signatures reflects a combination of the specific wifi chipset, device driver, WPA supplicant and PCB layout of the client device, they are capable of identidying differnt devices. The figure below shows the wifi signatures of differnt mobile phones.
 
+![alt_text][frame1]
+
+[frame1]:https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/sig.png  
+
+## **Method & Implementation**
+
 
