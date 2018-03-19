@@ -44,8 +44,10 @@ As mentioned in the previous section, the approach we are adopting is first we w
 * **WiFi Signature Extraction**
 * **Occupancy Detection**
 
-## **Results and Discussion**
+## **Results & Discussion**
 
 ## Future Work
+
+## Reference
 
 
