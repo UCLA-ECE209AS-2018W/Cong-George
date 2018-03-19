@@ -35,8 +35,6 @@ class signature:
 
 
 class wifi_sig:
-    sig_count = 0
-
     def __init__(self, mac_addr):
         self.mac_addr = mac_addr
         self.has_probe = 0

@@ -1,5 +1,6 @@
 import operator
 import csv
+import pickle as pk
 from datetime import datetime
 from scapy.all import *
 from all_objects import *
@@ -180,13 +181,16 @@ def build_WifiSig(file_name, mac_addr, ignore_mac=0):
 def clear_sig_database(file):
     if os.path.exists(file):
         with open(file, 'rb') as rfp:
-            database = pickle.load(rfp)
+            try:
+                database = pk.load(rfp)
+            except EOFError:
+                database = {}
 
         # clear out everything
         database = {}
 
         with open(file, 'wb') as wfp:
-            pickle.dump(database, wfp)
+            pk.dump(database, wfp)
     # if there is no database
     else:
         raise Exception("file not exist")
@@ -196,29 +200,33 @@ def clear_sig_database(file):
 def save_new_sig(file, wifi_sig, device_name, device_type):
     if os.path.exists(file):
         with open(file, 'rb') as rfp:
-            database = pickle.load(rfp)
+            try:
+                database = pk.load(rfp)
+            except EOFError:
+                database = {}
 
         # add the new wifi signature object
         # create wifi signature tuple: (device_type, signature object)
         database[device_name] = (device_type, wifi_sig)
 
         with open(file, 'wb') as wfp:
-            pickle.dump(database, wfp)
+            pk.dump(database, wfp)
     # if there is no database
     else:
         database = {device_name: (device_type, wifi_sig)}
         with open(file, 'wb') as wfp:
-            pickle.dump(database, wfp)
+            pk.dump(database, wfp)
 
 
 # load the database from database file
 def load_sig_database(file):
     if os.path.exists(file):
         with open(file, 'rb+') as rfp:
-            database = pickle.load(rfp)
-
-            if len(database) == 0:
+            try:
+                database = pk.load(rfp)
+            except EOFError:
                 print("Warning: database empty!")
+                database = {}
         return database
     else:
         raise Exception("no database file!")
@@ -228,7 +236,7 @@ def load_sig_database(file):
 def display_database(file):
     if os.path.exists(file):
         with open(file, 'rb') as rfp:
-            database = pickle.load(rfp)
+            database = pk.load(rfp)
 
         for name, value in database.items():
             print("device name: " + name)
@@ -378,7 +386,7 @@ def obj_in_list(obj, obj_list):
 # return a updated new list of device in this time period if mode 1
 # mode 0: only scan for Probe Request/Ass packs, mode 1: also scan for data packets and log new device
 def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='tracking.pcap',
-                     monitor_card='wlan1mon', db_file="signature_database.p", mode=0):
+                     monitor_card='wlan1mon', db_file="sig_database.p", mode=0):
     print("Perform passive tracking...")
     rule_for_mode0 = "type mgt and subtype assoc-req or subtype probe-req"
     rule_for_mode1 = "type data or subtype assoc-req or subtype probe-req"
@@ -445,11 +453,10 @@ def active_phase(ap, mon_card, sig_stats):
     # first do a device scanning
     device_list = device_tracking(ap, channel="2", duration='180')
     print(device_list)
-
     # for each device, launch deauth attack and do active fingerprinting
     for dev in device_list:
         deauth(mon_card, target=dev, AP=ap)
-        passive_tracking(sig_stats, ap_addr=ap, duration='120', mode=0)
+        passive_tracking(sig_stats, ap_addr=ap, duration='180', mode=0)
 
     sig_stats.active_stats_display()
     sig_stats.all_dev_display()
@@ -499,4 +506,4 @@ def passive_phase(ap, sig_stats, passive_dur='300', period=10, update_fre=6):
             # log active devices in this period
             fp.write("Active devices: ")
             for dev_info in sig_stats.active_dev_list:
-                fp.write("name {} type {} mac {}".format(dev_info.name, dev_info.type, dev_info.mac))
+                fp.write("name {} type {} mac {}\n".format(dev_info.name, dev_info.type, dev_info.mac))
