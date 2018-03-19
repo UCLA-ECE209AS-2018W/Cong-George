@@ -21,9 +21,12 @@ As our approach relies on forming wifi signature from 802.11 frame heavily, we w
 
 [frame]: https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/Screen%20Shot%202018-03-19%20at%201.02.36%20PM.png  
 
-The information in the header contains both sender and receiver information as well as packet type and some other information you can refer to [this site](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc757419(v=ws.10)) for a detailed information, our approach only focuses on two specific type of packets: **probing packet(frame)** and **association packet(frame)**
+The information in the header contains both sender and receiver information as well as packet type and some other information you can refer to [this site](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc757419(v=ws.10)) for a detailed information, our approach only focuses on two specific type of packets: **probing packet(frame)** and **association packet(frame)** in MLME
 
-* **WiFi Management Layer Identity**  
-vv
+* **WiFi Management Layer Identity(MLME)**  
+MLME compromises a number of different types of packets with fixed parameters in 802.11 frame and are followed by other parameters suc as tagged parameters, optional fields. Also, different vendor will also add thier own parameters to the packet, which make packets sent by different devices easy of identify. Among all those MLME packets, our approach leverage the content of **Probe Frames** and **Association Frame**:  
+**Probe frame**: sent by clients searching for an access point for any available AP, information included in the probe frame may be capabilites such as encodings, supported rates, authentication capabilities, supported MAC and so on.  
+**Association frame**: sent by clients to ask the AP to add clients themselved to the WLAN.  
+Our approach relies on these two frame to identify devices and infer house acticity.
 
 
