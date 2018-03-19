@@ -5,7 +5,7 @@ class sig_record:
         self.mac = mac
 
     def __eq__(self, other):
-        return self.name == other.name and self.type == other.type and self.mac == other.mac
+        return self.mac == other.mac
 
     def __ne__(self, other):
         return not self.__eq__(other)

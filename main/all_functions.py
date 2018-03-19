@@ -21,16 +21,17 @@ def monitor_mode_setup(mon_card):
 
 
 # find the AP with the strongest SNR and set the monitor channel to that AP
-def ap_scanning(mon_card='wlan1mon', duration='10', file_name='ap_info'):
+def ap_scanning(mon_card='wlan1mon', duration='120', file_name='ap_info'):
     channel = ''
     chosen_bssid = ''
 
     # save 5-second scanning result to a csv file
     print('scan for nearby AP...')
     os.system('rm ' + file_name + '*')
-    subprocess.Popen('timeout ' + duration + ' airodump-ng -w ' + file_name +
+    FNULL = open(os.devnull, 'w')
+    subprocess.call('timeout ' + duration + ' airodump-ng -w ' + file_name +
                                     ' --output-format csv -I 5 --ignore-negative-one '
-                                    + mon_card, shell=True).wait()
+                                    + mon_card, shell=True, stdout=FNULL, stderr=subprocess.STDOUT)
 
     reader = csv.reader(open(file_name + '-01.csv'))
     list_reader = list(reader)
@@ -57,10 +58,10 @@ def ap_scanning(mon_card='wlan1mon', duration='10', file_name='ap_info'):
 
     # config adapter to focus on certain wifi frequency
     print("Monitor channel configured to " + channel)
-    channel_config = "iwconfig wlan1 channel " + channel
+    channel_config = "iwconfig {} channel {}".format(mon_card, channel)
     os.system(channel_config)
     
-    return chosen_bssid, channel
+    return chosen_bssid.lower()
 
 
 # return a list of devices connected to a AP
@@ -345,7 +346,7 @@ def ham_dist_judgement(db_file, sig_target):
         
         # if ham_dist is 0, return immediately
         if ham_dist == 0:
-            ret = sig_record(sig, sig_database[sig][0], sig_database[sig][1].mac_addr)
+            ret = sig_record(sig, sig_database[sig][0], sig_target.mac_addr)
             return ret
         # take note the min ham item in database
         elif ham_dist < min_ham:
@@ -354,7 +355,7 @@ def ham_dist_judgement(db_file, sig_target):
 
     # if the minimum haming distance is smaller than a threshold
     if min_ham < 10:
-        return sig_record(min_sig, sig_database[min_sig][0], sig_database[min_sig][1].mac_addr)
+        return sig_record(min_sig, sig_database[min_sig][0], sig_target.mac_addr)
     else:
         print("unclassified device")
         ret = sig_record("unknown", -1, sig_target.mac_addr)
@@ -484,8 +485,11 @@ def passive_phase(ap, sig_stats, passive_dur='300', period=10, update_fre=6):
         # if previously active device not in network anymore
         # remove that dev from active dev list
         for dev_info in sig_stats.active_dev_list:
-            if dev_info.mac not in dev_list:
+            if dev_info.mac not in dev_list and len(dev_list) != 0:
                 sig_stats.active_dev_list.remove(dev_info)
+                with open(sig_stats.log_file, "a+") as fp:
+                    fp.write("device {} mac {} leaves the network at {}\n".format(
+                        dev_info.name, dev_info.mac, str(datetime.now())))
 
         # display active device info after each period
         print("Current active device:")
@@ -504,6 +508,6 @@ def passive_phase(ap, sig_stats, passive_dur='300', period=10, update_fre=6):
             fp.write(info1)
             fp.write(info2)
             # log active devices in this period
-            fp.write("Active devices: ")
+            fp.write("Active devices: \n")
             for dev_info in sig_stats.active_dev_list:
                 fp.write("name {} type {} mac {}\n".format(dev_info.name, dev_info.type, dev_info.mac))
