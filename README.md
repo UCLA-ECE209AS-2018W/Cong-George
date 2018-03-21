@@ -39,7 +39,7 @@ In order for AP to handle probe and association request, AP examines the serires
 ## **Method**
 As mentioned in the previous section, the approach we are adopting is first we will collect all the packets from any devices nearby, and from the 802.11 frame we will extract probe frame and assocaition frame to form the WiFi signature and identify the devices that send out probe and association frame most frequnctly within in a period time that is sufficiently long. After we have identify those devices, we will regard a house or room being occupied when those all those devices are actively sending probe and assotiation frames.
 
-#### **Inspiration**
+#### **Motivation**
 Inspired by [Spying on the Smart Home: Privacy Attacks and Defenses on Encrypted IoT Traffic](https://arxiv.org/pdf/1708.05044.pdf), despite that information in 802.11 raw packets sniffed from the air is very well encrypted by latest WPA2 encrytion method and is very difficult to decrypted, personal privacy information can be still distilled from the encrypted packets traffic analysis. Although data contained in the upper layer of the packet are encrytpted, the ethernet (mac) layer and radio link information are transparent, giving sniffer the opportunity to learn the frame type, packet size and etc of a traffic from certain device in the network at any time. Depending on the hardware/software configuration and usage of a smart device, its traffic pattern may also vary accordingly. As discovered by researchers in [Is Anybody Home? Inferring Activity From Smart Home Network Traffic](http://ieeexplore.ieee.org/document/7527776/?reload=true), smart home devices collect, exchange, and transmit various data about the environment of our homes. This data can not only be used to characterize a physical property but also to infer personal information about the inhabitants. Traffic classification can be used as a source for covert channel attacks. Specifically, traffic classification techniques can infer events taking place within a building. 
 
 #### **Traffic Classification Attempt**
@@ -60,8 +60,22 @@ Another major cause resides in features extracted from captured traffic. There a
 * Network Activity Insufficient to Indicate House Occupancy
 The fundamental reason that behind the failure of this approach is that we made a incorrect assumption about the relation between network traffic and house occupancy. Previously, we associate house occupancy with active network activity and naively assume active wifi traffic entails house occupancy and vise versa. Nevertheless, inactive traffic does NOT indicate house vacancy at all. Our clustering model always cluster night-time periods with actual vacant periods. It is highly likely that traffic pattern at nighttime where occupants of a house are not using smart device (sleeping) very much resembles periods when the house is actually vacant. Due to this observation, we finally realized that the traffic classfication approach is rather futile as network activity is a insufficient indicator of house occupancy.
 
+#### **Cellphone Fingerprinting**
+Rather focusing on traffic classfication, we later shifted to another approach - fingerprint all cellphones in the house. If any cellphone is detected in the network, then the house is not vacant and vise versa. This may rather sound like a very reckless claim, however, according to this [survey](http://www.pewinternet.org/2015/08/26/chapter-1-always-on-connectivity/), 92% American Adults own at least one cellphone and 67% of them are smartphones with Wifi capability. Furthermore, 90% of American adults carry cellphone with them wherever and about 80% of all adults never turn their cellphones off. Based on these numbers this survey, we believe the present of cellphone is a good indicator of house occupancy. Still there are a few assumptions we made for our approach to work as expected:
+
+- The target house has a wifi AP (router)
+- Occupants of target house have smartphones with wifi capabilities
+- Occupants take cellphone with them when they leave the house
+- Occupants do not turn off their cellphones at night and so remain in the network
+- Smartphones of Occupants connect with house AP automatically
+
+* Probe Request Monitoring
+A very famous technique to fingerprint devices in the network is through probe request monitoring. Probe request frames as introduced in the background section, is one type of management frame which devices broadcast constantly in search for possible AP nodes to connect with. 
+
+
 
 ## **Implementation**
+* **Hardware Setup**
 * **Kali Linux Environment** 
 * **WiFi Packets Sniffing**
 * **WiFi Signature Extraction**
