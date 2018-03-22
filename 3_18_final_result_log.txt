@@ -173,9 +173,10 @@ Current active device stats: 0 cellphone, 0 computer, 1 Iot, 0 other, 0 unknown
 Active devices: 
 name GoogleHome type 2 mac f4:f5:d8:a4:7b:d4
 house Occupency at 2018-03-19 20:28:17.119324: Yes
-Current active device stats: 1 cellphone, 0 computer, 1 Iot, 0 other, 0 unknown
+Current active device stats: 2 cellphone, 0 computer, 1 Iot, 0 other, 0 unknown
 Active devices: 
 name GoogleHome type 2 mac f4:f5:d8:a4:7b:d4
+name ip6 type 0 mac 6c:72:e7:58:24:1a
 name ip7s type 0 mac 7c:50:49:27:33:e3
 house Occupency at 2018-03-19 20:59:27.414923: Yes
 Current active device stats: 2 cellphone, 1 computer, 1 Iot, 0 other, 0 unknown
