@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="043a6f17-1559-4755-a1d1-ed0dd0731181" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/3_18_device_log.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/3_18_final_result_log.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/3_20_device_log.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/3_20_final_result_log.txt" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Development Files/active fingerprinting.py" afterPath="$PROJECT_DIR$/Development Files/active fingerprinting.py" />
       <change beforePath="$PROJECT_DIR$/main/all_functions.py" afterPath="$PROJECT_DIR$/main/all_functions.py" />
-      <change beforePath="$PROJECT_DIR$/main/all_objects.py" afterPath="$PROJECT_DIR$/main/all_objects.py" />
       <change beforePath="$PROJECT_DIR$/main/dev_summary-01.csv" afterPath="$PROJECT_DIR$/main/dev_summary-01.csv" />
+      <change beforePath="$PROJECT_DIR$/main/device_log.txt" afterPath="$PROJECT_DIR$/main/device_log.txt" />
+      <change beforePath="$PROJECT_DIR$/main/final_result_log.txt" afterPath="$PROJECT_DIR$/main/final_result_log.txt" />
       <change beforePath="$PROJECT_DIR$/main/main.py" afterPath="$PROJECT_DIR$/main/main.py" />
       <change beforePath="$PROJECT_DIR$/main/tracking.pcap" afterPath="$PROJECT_DIR$/main/tracking.pcap" />
     </list>
@@ -24,24 +30,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
               <folding>
-                <element signature="e#0#27#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="final_result_log.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="final_result_log.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/final_result_log.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="119">
+              <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="all_functions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/all_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2133">
+              <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,21 +77,9 @@
       <file leaf-file-name="all_objects.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/all_objects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-765">
-              <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+            <state relative-caret-position="359">
+              <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="all_functions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/all_functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="60" column="71" lean-forward="false" selection-start-line="60" selection-start-column="71" selection-end-line="60" selection-end-column="71" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -89,14 +95,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>FNU</find>
-      <find>csv.reader</find>
-      <find>ap</find>
       <find>ap_scanning</find>
       <find>subprocess</find>
       <find>no</find>
       <find>no database</find>
-      <find>device_tracking</find>
       <find>wifi signature build</find>
       <find>unclass</find>
       <find>ham_distance</find>
@@ -117,8 +119,12 @@
       <find>active</find>
       <find>enter</find>
       <find>remove</find>
-      <find>signature_database.p</find>
       <find>ap_sca</find>
+      <find>enter</find>
+      <find>signature_database.p</find>
+      <find>airo</find>
+      <find>active_phase</find>
+      <find>device_tracking</find>
     </findStrings>
     <replaceStrings>
       <replace>pk</replace>
@@ -147,10 +153,12 @@
         <option value="$PROJECT_DIR$/active fingerprinting.py" />
         <option value="$PROJECT_DIR$/main/signature_database.p" />
         <option value="$PROJECT_DIR$/main/database_creation.py" />
+        <option value="$PROJECT_DIR$/main/3_18_final_result_log.txt" />
+        <option value="$PROJECT_DIR$/main/3_18_device_log.txt" />
         <option value="$PROJECT_DIR$/main/all_objects.py" />
-        <option value="$PROJECT_DIR$/main/all_functions.py" />
-        <option value="$PROJECT_DIR$/main/final_result_log.txt" />
         <option value="$PROJECT_DIR$/main/device_log.txt" />
+        <option value="$PROJECT_DIR$/main/final_result_log.txt" />
+        <option value="$PROJECT_DIR$/main/all_functions.py" />
         <option value="$PROJECT_DIR$/main/main.py" />
       </list>
     </option>
@@ -203,10 +211,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/Development Files" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/main" />
     </key>
   </component>
@@ -534,48 +544,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Development Files/monitor_card_setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/tcpdump packets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="54" lean-forward="true" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/AP scanning.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/monitor_card_setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/tcpdump packets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/AP scanning.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Development Files/monitor_card_setup.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
@@ -791,20 +759,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/3_18_device_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3_18_final_result_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3_19_device_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="53" lean-forward="false" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3_19_final_result_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="72" column="16" lean-forward="true" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/all_objects.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="6" column="28" lean-forward="true" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        <state relative-caret-position="359">
+          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3_20_final_result_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="42" lean-forward="true" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3_20_device_log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/all_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="60" column="71" lean-forward="false" selection-start-line="60" selection-start-column="71" selection-end-line="60" selection-end-column="71" />
+        <state relative-caret-position="-2133">
+          <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -819,19 +845,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/final_result_log.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

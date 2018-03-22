@@ -1,0 +1,16 @@
+house Occupency at 2018-03-22 00:18:52.634315: Yes
+Current active device stats: 2 cellphone, 0 computer, 1 Iot, 0 other, 0 unknown
+Active devices: 
+name ip7s2 type 0 mac 7c:50:49:27:33:e3
+name GoogleHome type 2 mac f4:f5:d8:a4:7b:d4
+name ip6 type 0 mac 6c:72:e7:58:24:1a
+house Occupency at 2018-03-22 00:49:49.950733: Yes
+Current active device stats: 1 cellphone, 0 computer, 1 Iot, 0 other, 0 unknown
+Active devices: 
+name ip7s2 type 0 mac 7c:50:49:27:33:e3
+name GoogleHome type 2 mac f4:f5:d8:a4:7b:d4
+house Occupency at 2018-03-22 01:20:53.645926: Yes
+Current active device stats: 1 cellphone, 0 computer, 1 Iot, 0 other, 0 unknown
+Active devices: 
+name ip7s2 type 0 mac 7c:50:49:27:33:e3
+name GoogleHome type 2 mac f4:f5:d8:a4:7b:d4

@@ -1,0 +1,8 @@
+dev ip7s2, type cellphone, mac: 7c:50:49:27:33:e3 enter network at: 2018-03-21 23:38:55.916255
+dev GoogleHome, type IoT device, mac: f4:f5:d8:a4:7b:d4 enter network at: 2018-03-21 23:48:03.630329
+dev ip7s2, type cellphone, mac: 00:db:70:6a:3a:ec enter network at: 2018-03-21 23:48:05.813155
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-22 00:08:17.317177
+device ip7s2 mac 00:db:70:6a:3a:ec leaves the network at 2018-03-22 00:18:52.632829
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-22 00:49:49.949054
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-22 00:59:59.368826
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-22 01:20:53.644517

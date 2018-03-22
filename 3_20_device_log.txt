@@ -1,0 +1,22 @@
+dev unknown, type unknown, mac: c4:b3:01:ba:76:3d enter network at: 2018-03-21 02:07:06.556293
+dev macpro, type computer, mac: c4:b3:01:c0:d7:55 enter network at: 2018-03-21 02:10:09.776352
+dev ip7s2, type cellphone, mac: 7c:50:49:27:33:e3 enter network at: 2018-03-21 02:13:12.523979
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-21 02:13:13.848182
+dev GoogleHome, type IoT device, mac: f4:f5:d8:a4:7b:d4 enter network at: 2018-03-21 02:16:18.160242
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-21 02:46:58.780351
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-21 03:02:06.094560
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-21 03:49:39.782445
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-21 04:40:54.241258
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-21 04:51:11.718532
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-21 04:56:14.587795
+device macpro mac c4:b3:01:c0:d7:55 leaves the network at 2018-03-21 05:52:51.409377
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-21 06:23:50.221372
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-21 06:28:58.732795
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-21 06:54:46.175599
+dev ip6, type cellphone, mac: 6c:72:e7:58:24:1a enter network at: 2018-03-21 07:10:05.478148
+device unknown mac c4:b3:01:ba:76:3d leaves the network at 2018-03-21 08:27:25.789418
+dev unknown, type unknown, mac: c4:b3:01:ba:76:3d enter network at: 2018-03-21 10:19:59.465622
+device unknown mac c4:b3:01:ba:76:3d leaves the network at 2018-03-21 11:01:15.117189
+dev unknown, type unknown, mac: 20:f8:5e:d4:19:5e enter network at: 2018-03-21 11:11:25.272514
+device unknown mac 20:f8:5e:d4:19:5e leaves the network at 2018-03-21 11:31:58.385978
+device ip6 mac 6c:72:e7:58:24:1a leaves the network at 2018-03-21 17:40:10.527116

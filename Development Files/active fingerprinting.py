@@ -16,7 +16,7 @@ class sig_stats:
         self.all_stats = {"cellphone": 0, "computer": 0, "IoT device": 0, "other": 0, "unknown": 0}
         self.active_dev_list = []
         self.all_dev_list = []
-        self.log_file = "device_log.txt"
+        self.log_file = "3_19_device_log.txt"
 
     def update_active_stats(self):
         for dev in self.active_dev_list:

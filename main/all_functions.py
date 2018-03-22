@@ -432,14 +432,14 @@ def passive_tracking(signature_stats, ap_addr, duration="300", pck_file='trackin
             # if the matched device not in the device list already
             if not obj_in_list(new_dev, signature_stats.active_dev_list):
                 signature_stats.active_dev_list.append(new_dev)
-            if not obj_in_list(new_dev, signature_stats.all_dev_list):
-                signature_stats.all_dev_list.append(new_dev)
 
                 # log this device apear info (when does it enter this network)
                 with open(signature_stats.log_file, 'a+') as f:
                     info = "dev {}, type {}, mac: {} enter network at: {}\n".format(new_dev.name,
-                          signature_stats.predef_type[new_dev.type], new_dev.mac, str(datetime.now()))
+                        signature_stats.predef_type[new_dev.type], new_dev.mac, str(datetime.now()))
                     f.write(info)
+            if not obj_in_list(new_dev, signature_stats.all_dev_list):
+                signature_stats.all_dev_list.append(new_dev)
 
     if mode != 0:
         return new_dev_list
@@ -462,6 +462,14 @@ def active_phase(ap, mon_card, sig_stats):
     sig_stats.active_stats_display()
     sig_stats.all_dev_display()
     print("active phase exit")
+
+
+# utility function to check whether a sig record list has a record with target mac address
+def mac_for_sigrecord(mac_addr, sig_record_list):
+    for sig_record in sig_record_list:
+        if sig_record.mac == mac_addr:
+            return sig_record
+    return None
 
 
 # passive_dur: passive monitoring duration (s)
@@ -490,6 +498,17 @@ def passive_phase(ap, sig_stats, passive_dur='300', period=10, update_fre=6):
                 with open(sig_stats.log_file, "a+") as fp:
                     fp.write("device {} mac {} leaves the network at {}\n".format(
                         dev_info.name, dev_info.mac, str(datetime.now())))
+
+        # if device scanned appeared in the network before but did not get inserted in act_list
+        # add it to the active list (fail to capture the assoc request somehow)
+        for unknown_dev in dev_list:
+            all_matched_record = mac_for_sigrecord(unknown_dev, sig_stats.all_dev_list)
+            active_matched_record = mac_for_sigrecord(unknown_dev, sig_stats.active_dev_list)
+            if all_matched_record is not None and active_matched_record is None:
+                sig_stats.active_dev_list.append(all_matched_record)
+                with open(sig_stats.log_file, "a+") as fp:
+                    fp.write("device {} mac {} re-enters the network at {}\n".format(
+                        all_matched_record.name, all_matched_record.mac, str(datetime.now())))
 
         # display active device info after each period
         print("Current active device:")
