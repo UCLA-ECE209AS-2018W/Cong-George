@@ -77,14 +77,27 @@ However, when we followed this trace and conduct a series of experiments, we soo
 #### **Device Fingerprinting with WiFi Signature**
 Finally, in the effort to search for other possible device fingerprint techniques, we came across a conference paper published by two Google Engineer two years ago [Passive Taxonomy of Wifi Clients using MLME Frame Contents](https://arxiv.org/abs/1608.01725). The author introduced a passive fingerprint method to identify the type of a client device (taxonomy) in the network with its unique "wifi-signature". With the mainstream adoption of 802.11n and 802.11ac, Wifi management frames contain a rich set of optional fields, capability bitmasks, and other information which vary substantially between different Wifi devices. By listing (in order) the parameters present in several common types of management frames, and extracting a few specific bitmasks from these frames, a highly specific signature can be developed. This signature is most strongly influenced by the chipset, which determines the values populated in the various capability bitmasks. It is next most strongly influenced by the device driver and wifi software stack, which determine the specific Information Elements present. Finally, a few values related to power levels and number of antennas are determined by the PCB board design. The combination of all of these can generally identify the model of the device.
 
+![alt text][tag_param]
 
+[tag_param]: hjsujhajs
+
+![alt text][signature]
+
+[signature]: dsadkasjd
+
+From the screenshot above, these tagged parameters reveal much information about the device itself such as supported data rates and supported transfer mode. Such capabilities are strongly associated with the hardware and software configuration of the device. That is why this method works so well. Note that the author also mentioned for similar devices such as iphone7 and iphone7s, their signature may look very similar as these products adopted very similar software and hardware configurations. Due to this reason, the accuracy of this method to identify every unique device is relatively low (a little above 50%) according to his experiment, however this approach still suits our project very well as long as this method could help to identify the type of the device. We do not really care about whether it is a iphone7 or iphone7S, as long as it could help us to determine it is an iphone, that will be good enough.
 
 ## **Implementation**
+Following the Wifi dignature method, we implement our sniffing system and set it up in my apartment room which is about 100 sqare ft. It is a very wifi trafic noisey environment as there are dozens of devices not only in my room but also in my neighboors' units at different apartment floors. Thre are countless wifi-packets transmitting in the air at any point of time. 
+
 * **Hardware Setup**
-* **Kali Linux Environment** 
-* **WiFi Packets Sniffing**
-* **WiFi Signature Extraction**
-* **Occupancy Detection**
+Hardware configuration is rather very simple. All we need is a Rpi board and a Wifi adaptor with monitor mode and packets injection capbilities. Monitor mode is just a mode the adaptor could operate with to capture wifi packets diretly from the air in regardless of its destination and source. The packet injection ability enables the adaptor to inject a 802.11 frame generated from our device in the air and directs it to its destination mac address.
+
+* **Software Support** 
+* **Operation Overview**
+* **Active Phase**
+* **Passive Phase**
+* **Database match**
 
 ## **Results & Discussion**
 
