@@ -114,5 +114,15 @@ One main direction of the fututure work would be migrating the task of traffic c
  - At last, to implement our design, we are following a tutorial called **"Everything generates data: Capturing WiFi anonymous traffic using Raspberry Pi and WSO2 BAM"** to collect WiFi packet in Kali Linux environment.  
 
 ## Reference
+**Shield: vulnerability-driven network filters for preventing known vulnerability exploits**
+**Network Traffic Classification using Support Vector Machine and Artificial Neural Network**
+**Deep Packet: A Novel Approach For Encrypted Traffic Classification Using Deep Learning**
+**Spying on the Smart Home: Privacy Attacks and Defenses on Encrypted IoT Traffic**
+**Is Anybody Home? Inferring Activity From Smart Home Network Traffic**
+**A Study of MAC Address Randomization in Mobile Devices and when it Fails**
+**On Security Vulnerabilities of Null Data Frames in IEEE 802.11 based WLANs**
+**Passive Taxonomy of Wifi Clients using MLME Frame Contents**
+**Passive Data Link Layer 802.11 Wireless Device Driver FingerPrinting**
+**Identify Unique Devices through Wireless FingerPrinting**
 
 
