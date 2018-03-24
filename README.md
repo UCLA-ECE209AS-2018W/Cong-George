@@ -1,4 +1,4 @@
-# ECE209AS Course project: House Occupacy Detection Via WiFi Packets Sniffing
+# ECE209AS Course project: House Occupancy Detection Via Encrypted WiFi Packets Sniffing
 
 ## [Project Website](https://ucla-ece209as-2018w.github.io/Cong-George/)
 
