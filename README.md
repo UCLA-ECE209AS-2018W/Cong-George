@@ -84,13 +84,13 @@ From the screenshot above, these tagged parameters reveal much information about
 ## **Implementation**
 Following the Wifi dignature method, we implement our sniffing system and set it up in my apartment room which is about 100 sqare ft. It is a very wifi trafic noisey environment as there are dozens of devices not only in my room but also in my neighboors' units at different apartment floors. Thre are countless wifi-packets transmitting in the air at any point of time. 
 
-* **Hardware Setup**
+**Hardware Setup**
 Hardware configuration is rather very simple. All we need is a Rpi board and a Wifi adaptor with monitor mode and packets injection capbilities. Monitor mode is just a mode the adaptor could operate with to capture wifi packets diretly from the air in regardless of its destination and source. The packet injection ability enables the adaptor to inject a 802.11 frame generated from our device in the air and directs it to its destination mac address.
 
-* **Software Support** 
+**Software Support** 
 Instead of use the default Rasperbian OS for our Rpi, we use Kali linux as our OS due to its fast kernel and inbuild tool for wifi packet manipulation. We use WireShark and Tcpdump for packets dump and inspection. Furthermore, two build-in tool of Kali linux are also used. Airodump-ng and Aireplay-ng are used for AP scanning and deauthentification attack. For porject develpment, we use Pycharm to write python scripts and git to synchronize project progress.
 
-* **Operation Overview**
+**Operation Overview**
 
 ![alt text][operation_overview]
 
@@ -98,10 +98,10 @@ Instead of use the default Rasperbian OS for our Rpi, we use Kali linux as our O
 
 The diagram above shows the operation process of our script and it can be divided into four steps. The first three steps happens when our device is setting up. When the operation enters the passive phase, our device will passively monitor the network and generate occupancy report periodically (default every 30 mins).
 
-* **Setup and Scan for AP**
+**Setup and Scan for AP**
 The setup process is really simple. First we need to initiate a series shell command to configure the adaptor to be in the monitor mode. Then we perform a AP scanning to scan all available AP nearby. Assuming that our device is placed close enough to the target AP, therefore, after getting a complete list of nearby AP and their SNR with the use of the tool Airodump-ng, we simply choose the one with the strongest SNR to be our target AP. We also configure our adaptor to only listen to the channel this AP operates on. 
 
-* **Active Phase**
+**Active Phase**
 
 ![alt text][four-way handshake]
 
@@ -117,7 +117,7 @@ In our project, we are not interested in this four-way handshake process. As men
 
 In order to identify devices already in the network, just as the algorithm psuedocode shown above, first we do a scan of all devices already connected to the AP and get a list of devices mac address. For each device in the list, we launch the deauthentification attack using the build-in tool aireplay-ng. Deauthentification attack is one type of DDOS attack which we created fake deauthentification packet and spoof the source mac address of the packet to be the AP mac address pretending we are the AP and send it out to the target device. As introduced eariler, deauthentification packets are sent when one side of the connection decided to terminate the communication. Deauthtification packets are also very easy to create as the header of 802.11 frame is simply plain text. With packet injection capbilities of our adapter, we could easily send out arbitrary number of deauth packets to victim device at any time. Once client device receive these packets, it will think AP needs to terminate the connection and so it will exit from the wifi network. After it exits the network, we then stop the attack. Since most device will automatically connect back with a known available AP, it creates a moment of re-connection for us to build the signature of the device and identify its type. Deauthentification attack is widely used by attackers to capture four-way handshake packets to decode wifi password. We borrow its idea here to capture the two packets of our interest. While we are launching the attack, at the same time we also are also monitoring the packets traffic in the air and capture these two packets of our interest to build the signature. In our experiments, our active method works unexpectedly well with 100% succcess rate.
 
-* **Passive Phase**
+**Passive Phase**
 ![alt text][Active_phase]
 
 [tag_param]: hjsujhajs
@@ -126,18 +126,24 @@ As the algorithm pusedocode shows above, the passive phase is rather very simple
 
 Note that in the big loop of the passive listening periods there are subperiods. In these subperiods we use Tcpdump to collect packets for the duration of subperiod. After it finish its collection, we perform a packets analysis to collect packets of our interest and build signature if there is. While this packet analysis takes very little time (less than a few hundred ms), however we are not monitoring packets in the air at the meantime, therefore it is possible that we may miss some new connection at this moment. 
 
-* **Database match**
+**Database match**
 In order to identify the device, first we create the wifi signature of the device using tagged parameters of probe and association packets. Then we compare the signature with entries in a signature database where contains signatures of known types of devices. To perform the comparison, we calculate the hamming distance of two signatures by counting the number of different bytes in their signatures. The match is the signature of a known device in the database with the smallest hamming distance the unknown client device. 
 
 We built a small database with about 10 devices we have in hand and divided into three catgories: smart phones, laptop and Iot devices. We have a few smartphones in the database such as iphone7, iphone7 plus, iphone6 and Huawei android phone. There are only two laptops: Macbook pro and Huawei portable laptop. There is also one Iot device, the Google Home I kept in the bedroom. Although we do not have many device in the database, ideally our script should still identify a unknown device correctly if it belongs to the same type of device (such as iphone7) as certain entry in database.
 
 ## **Results & Discussion**
 [Occupancy Report 3/18/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_18_final_result_log.txt)
+
 [Device log 3/18/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_18_device_log.txt)
+
 [Occupancy Report 3/19/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_19_final_result.txt)
+
 [Device log 3/19/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_19_device_log.txt)
+
 [Occupancy Report 3/20/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_20_final_result.txt)
+
 [Device log 3/20/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_20_device_log.txt)
+
 
 These six documents showed the result our script genearted for three days. It successfully identified all devices in my room in the three-day period and accurately showed the occupancy. Occupancy will be determined as vacant when there are no smartphones present in the house. Furthermore, it successfully identified devices that were not logged in the database but belongs to the same type with certain entry in database despite the fact that sometimes it had hard time distinguishing between very similar devices such as iphone7 and iphone7s.
 
