@@ -21,7 +21,7 @@ As our approach relies on forming wifi signature from 802.11 frame heavily, we w
 
 ![alt text](frame)
 
-[frame]:https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/Screen%20Shot%202018-03-19%20at%201.02.36%20PM.png
+[frame](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/Screen%20Shot%202018-03-19%20at%201.02.36%20PM.png)
 
 The information in the header contains both sender and receiver information as well as packet type and some other information you can refer to [this site](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc757419(v=ws.10)) for a detailed information, our approach only focuses on two specific type of packets: **probing packet(frame)** and **association packet(frame)** in MLME
 
