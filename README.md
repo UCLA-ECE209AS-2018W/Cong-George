@@ -144,12 +144,15 @@ We built a small database with about 10 devices we have in hand and divided into
 ## **Results & Discussion**
 
 [Occupancy Report 3/18/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_18_final_result_log.txt)
+
 [Device log 3/18/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_18_device_log.txt)
 
 [Occupancy Report 3/19/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_19_final_result.txt)
+
 [Device log 3/19/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_19_device_log.txt)
 
 [Occupancy Report 3/20/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_20_final_result.txt)
+
 [Device log 3/20/2018](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/3_20_device_log.txt)
 
 
