@@ -73,7 +73,7 @@ Finally, in the effort to search for other possible device fingerprint technique
 
 ![alt text][tag_param]
 
-[tag_param]: hjsujhajs
+[tag_param]: https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/mgt%20frame%20tagged%20parameters.png
 
 ![alt_text][frame1]
 
@@ -91,9 +91,10 @@ Hardware configuration is rather very simple. All we need is a Rpi board and a W
 Instead of use the default Rasperbian OS for our Rpi, we use Kali linux as our OS due to its fast kernel and inbuild tool for wifi packet manipulation. We use WireShark and Tcpdump for packets dump and inspection. Furthermore, two build-in tool of Kali linux are also used. Airodump-ng and Aireplay-ng are used for AP scanning and deauthentification attack. For porject develpment, we use Pycharm to write python scripts and git to synchronize project progress.
 
 * **Operation Overview**
+
 ![alt text][operation_overview]
 
-[tag_param]: hjsujhajs
+[tag_param]: 
 
 The diagram above shows the operation process of our script and it can be divided into four steps. The first three steps happens when our device is setting up. When the operation enters the passive phase, our device will passively monitor the network and generate occupancy report periodically (default every 30 mins).
 
