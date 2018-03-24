@@ -19,9 +19,7 @@ As our approach relies on forming wifi signature from 802.11 frame heavily, we w
 * **802.11 frame**    
 802.11 frame is a header that is appened to the packets that are passed down from higher transport layer, information related to medium access control layer(MAC layer) will be added to the the header. All the realted data get passed down from the upper layer will be the payload of 802.11 frame and will be encrypted. However, the 802.11 frame header will not be encrypted and can be grabbed and parsed by tools such as wireshark. Let's take a look at the details of the contend of the header:  
 
-![alt text](frame)
-
-[frame](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/Screen%20Shot%202018-03-19%20at%201.02.36%20PM.png)
+![alt text](https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/Screen%20Shot%202018-03-19%20at%201.02.36%20PM.png)
 
 The information in the header contains both sender and receiver information as well as packet type and some other information you can refer to [this site](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc757419(v=ws.10)) for a detailed information, our approach only focuses on two specific type of packets: **probing packet(frame)** and **association packet(frame)** in MLME
 
