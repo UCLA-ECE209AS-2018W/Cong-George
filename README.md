@@ -76,17 +76,21 @@ Finally, in the effort to search for other possible device fingerprint technique
 
 [tag_param]: https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/mgt%20frame%20tagged%20parameters.png
 
+From the screenshot above, these tagged parameters reveal much information about the device itself such as supported data rates and supported transfer mode. Such capabilities are strongly associated with the hardware and software configuration of the device. That is why this method works so well. Note that the author also mentioned for similar devices such as iphone7 and iphone7s, their signature may look very similar as these products adopted very similar software and hardware configurations. Due to this reason, the accuracy of this method to identify every unique device is relatively low (a little above 50%) according to his experiment, however this approach still suits our project very well as long as this method could help to identify the type of the device. We do not really care about whether it is a iphone7 or iphone7S, as long as it could help us to determine it is an iphone, that will be good enough.
+
 ![alt_text][frame1]
 
 [frame1]:https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/sig.png  
-
-From the screenshot above, these tagged parameters reveal much information about the device itself such as supported data rates and supported transfer mode. Such capabilities are strongly associated with the hardware and software configuration of the device. That is why this method works so well. Note that the author also mentioned for similar devices such as iphone7 and iphone7s, their signature may look very similar as these products adopted very similar software and hardware configurations. Due to this reason, the accuracy of this method to identify every unique device is relatively low (a little above 50%) according to his experiment, however this approach still suits our project very well as long as this method could help to identify the type of the device. We do not really care about whether it is a iphone7 or iphone7S, as long as it could help us to determine it is an iphone, that will be good enough.
 
 ## **Implementation**
 
 Following the Wifi dignature method, we implement our sniffing system and set it up in my apartment room which is about 100 sqare ft. It is a very wifi trafic noisey environment as there are dozens of devices not only in my room but also in my neighboors' units at different apartment floors. Thre are countless wifi-packets transmitting in the air at any point of time. 
 
 **Hardware Setup**
+
+![alt_text][hardware]
+
+[hardware]: https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/hardware%20configuration.jpg
 
 Hardware configuration is rather very simple. All we need is a Rpi board and a Wifi adaptor with monitor mode and packets injection capbilities. Monitor mode is just a mode the adaptor could operate with to capture wifi packets diretly from the air in regardless of its destination and source. The packet injection ability enables the adaptor to inject a 802.11 frame generated from our device in the air and directs it to its destination mac address.
 
@@ -107,10 +111,6 @@ The diagram above shows the operation process of our script and it can be divide
 The setup process is really simple. First we need to initiate a series shell command to configure the adaptor to be in the monitor mode. Then we perform a AP scanning to scan all available AP nearby. Assuming that our device is placed close enough to the target AP, therefore, after getting a complete list of nearby AP and their SNR with the use of the tool Airodump-ng, we simply choose the one with the strongest SNR to be our target AP. We also configure our adaptor to only listen to the channel this AP operates on. 
 
 **Active Phase**
-
-![alt text][four-way handshake]
-
-[four-way handshake]: hjsujhajs
 
 Before introduing this operation phase, we would like to first explain what happens when a device connect to a AP. Upon its connection with the AP, device will first exchange six packets with AP: probe request/response, Authentification request/response and association request/response. After connection is initiated between user device and AP, a four-way handshake procedure takes place in which client exchange wifi password information with AP. This four-way handshape procedure has been a very well-known target for attackers to attempt to crack wifi password.
 
