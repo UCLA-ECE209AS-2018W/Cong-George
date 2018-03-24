@@ -32,10 +32,6 @@ Our approach relies on these two frame to identify devices and infer house actic
 * **WiFi Signature**  
 In order for AP to handle probe and association request, AP examines the serires tagged parameters from clientsextracting those and used them as WiFi signatures. Since wifi signatures reflects a combination of the specific wifi chipset, device driver, WPA supplicant and PCB layout of the client device, they are capable of identidying differnt devices. The figure below shows the wifi signatures of differnt mobile phones.
 
-![alt_text][frame1]
-
-[frame1]:https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/sig.png  
-
 ## **Method**
 As mentioned in the previous section, the approach we are adopting is first we will collect all the packets from any devices nearby, and from the 802.11 frame we will extract probe frame and assocaition frame to form the WiFi signature and identify the devices that send out probe and association frame most frequnctly within in a period time that is sufficiently long. After we have identify those devices, we will regard a house or room being occupied when those all those devices are actively sending probe and assotiation frames.
 
@@ -46,8 +42,6 @@ Inspired by [Spying on the Smart Home: Privacy Attacks and Defenses on Encrypted
 Follow the trace of these related work, in the very beginning of this project, we seeked to infer the house occupancy from encypted 802.11 packet traffic classification. We tried to look for possible correlation between sniffed packets traffic pattern and smart device usage activities. Motivated by the method introduced in [Deep Packet: A Novel Approach For Encrypted Traffic Classification Using Deep Learning](https://arxiv.org/pdf/1709.02656.pdf), we adopted a similar approach - sniff 802.11 packets for a certain period of time and feed in features extracted from the traffic into a machine learning model for analysis. 
 
 However, since we have no idea about the house host's living habbits, such as what smart devices he/she has, what applications they use and when to use it, traffic pattern could be totally different for different people. Even for the same person, his/her network usage may also change drastically due to many factors such as time of the day, weather and etc. Therefore, there is no way we could train a supervised machine learning model to perform the pattern classfication because simply we have no idea what the pattern would look like (this project will also be meaningless if we do know). Given this fact, a supervised deep learning model does not apply to our situation and we need a unsupervised machine learning model to classfy the network traffic. Therefore, we choosed a simple k-mean cluster model for the traffic analysis. After all, we only need the model to distinguish between two traffic pattern - when there is people home and when there is not, so k is simply equal to two. We also extract five feature such as number of data packets, number of devices,  number of null data packets and etc. These features will be calculated every 30 minutes and feed in the k-mean cluster model. At the end of the day, the model will finish its training and give out a pattern summary labeling the occupancy of each period (48 period in a day). 
-
-[kmean]:
 
 We spent the first few week to implement this method and the classfication result was horrible if not disastrous. Even after we tuning the model and facilitate the feature extraction process, the result still did not improve a bit. It turns out this naive traffic classfication attempt did not work as expected due to three major reasons:
 
@@ -81,9 +75,9 @@ Finally, in the effort to search for other possible device fingerprint technique
 
 [tag_param]: hjsujhajs
 
-![alt text][signature]
+![alt_text][frame1]
 
-[signature]: dsadkasjd
+[frame1]:https://github.com/UCLA-ECE209AS-2018W/Cong-George/blob/master/sig.png  
 
 From the screenshot above, these tagged parameters reveal much information about the device itself such as supported data rates and supported transfer mode. Such capabilities are strongly associated with the hardware and software configuration of the device. That is why this method works so well. Note that the author also mentioned for similar devices such as iphone7 and iphone7s, their signature may look very similar as these products adopted very similar software and hardware configurations. Due to this reason, the accuracy of this method to identify every unique device is relatively low (a little above 50%) according to his experiment, however this approach still suits our project very well as long as this method could help to identify the type of the device. We do not really care about whether it is a iphone7 or iphone7S, as long as it could help us to determine it is an iphone, that will be good enough.
 
@@ -146,8 +140,13 @@ We built a small database with about 10 devices we have in hand and divided into
 
 These six documents showed the result our script genearted for three days. It successfully identified all devices in my room in the three-day period and accurately showed the occupancy. Occupancy will be determined as vacant when there are no smartphones present in the house. Furthermore, it successfully identified devices that were not logged in the database but belongs to the same type with certain entry in database despite the fact that sometimes it had hard time distinguishing between very similar devices such as iphone7 and iphone7s.
 
+**Discussion**
+Despite the high accuracy of our script, there are still some restriction in the current design and need improvements. Mentioned earilier in the passive phase section, currently the script still relies on tcpdump to dump packets and we can only do packet analysis after packets collection process is done. This may lead to potential miss log of devices that join during our analysis period. One improvment on this could be instead of relying on third-party tool to collect the packet, we could write customized C code to get the packet directly from the kernel and process it right after the fetch. This makes packects sniffing and analysis happen at the sam time and thus avoid packet loss. 
+
+Another point worth bringing up about is the signature match finding process. As mentioned earlier, our database only contains about 10 entries. Therefore, signature comparison and match finding process takes very little time. However, imagine the case where the databse holds hundreds or even thousands of entries, time take to simply calculate the hamming distance one by one will be tremendous. This may slow down the whole process considerably and lead to packet miss. 
+
 ## Future Work
-One main direction of the fututure work would be migrating the task of traffic classification to machine learning based approch. This has advantage in various aspects. Given a proper model and architecture, the machine learing algorithm is much more powerful in extracting the features and finding correlations among all knids of traffic packets that are minglede together. This would be much more efficient than manually deciding and selecting features from frames. In addition, our design can only be applied to limited number of scenarios where the types of devices and network potocols across all layers of OSI is known, with ML model, we do not have to take care of potocols in advance, the model will do all the work for us.
+House occupancy detection is simply one application of this wifi signature method. There are many other potential applications this method could render as it provides a lightweight but really efficient method to identify the type of all devices in the network. This method could be used along with other device specific attack techniques. For example, after identifying a Nest Thermostats device in target house, one could further adopt the attack method introduce in the paper [Is Anybody Home? Inferring Activity From Smart Home Network Traffic](http://ieeexplore.ieee.org/document/7527776/?reload=true) which target Nest products. Future work could focus on how to take advantage of these identified devices. 
 
 ## Current Related Work
 - In paper **"Is Anybody Home? Inferring Activity From Smart Home Network Traffic"**, the researchers are trying to infer personal information by investigating device-to-device and device-to-cloud smart home network traffic. They are using traffic analysis techniques on network traffic generated by NEST thermostats to deduce information about the presence of residents and other events occurring within the property. They first collect traffic data and perform data filtering by MAC address and Organization Unique Identifier(OUI), after they have collected all the data they begin to learn the pattern of the data flow of each device by traffic classification and focusing on the connection size and correlation analysis as criterial for classification.
@@ -159,24 +158,24 @@ One main direction of the fututure work would be migrating the task of traffic c
  - At last, to implement our design, we are following a tutorial called **"Everything generates data: Capturing WiFi anonymous traffic using Raspberry Pi and WSO2 BAM"** to collect WiFi packet in Kali Linux environment.  
 
 ## Reference
-**Shield: vulnerability-driven network filters for preventing known vulnerability exploits**
+[Shield: vulnerability-driven network filters for preventing known vulnerability exploits](https://www.semanticscholar.org/paper/Shield%3A-vulnerability-driven-network-filters-for-Wang-Guo/2d24d4ae048b4f5eb1fdc493eeba2a7b4d79fb2b)
 
-**Network Traffic Classification using Support Vector Machine and Artificial Neural Network**
+[Network Traffic Classification using Support Vector Machine and Artificial Neural Network](https://pdfs.semanticscholar.org/618a/6e500e7fe53b5fbdecbb36d3db62b7d57676.pdf)
 
-**Deep Packet: A Novel Approach For Encrypted Traffic Classification Using Deep Learning**
+[Deep Packet: A Novel Approach For Encrypted Traffic Classification Using Deep Learning](https://arxiv.org/abs/1709.02656)
 
-**Spying on the Smart Home: Privacy Attacks and Defenses on Encrypted IoT Traffic**
+[Spying on the Smart Home: Privacy Attacks and Defenses on Encrypted IoT Traffic](https://arxiv.org/abs/1708.05044)
 
-**Is Anybody Home? Inferring Activity From Smart Home Network Traffic**
+[Is Anybody Home? Inferring Activity From Smart Home Network Traffic](http://ieeexplore.ieee.org/document/7527776/)
 
-**A Study of MAC Address Randomization in Mobile Devices and when it Fails**
+[A Study of MAC Address Randomization in Mobile Devices and when it Fails](https://petsymposium.org/2017/papers/issue4/paper82-2017-4-source.pdf)
 
-**On Security Vulnerabilities of Null Data Frames in IEEE 802.11 based WLANs**
+[On Security Vulnerabilities of Null Data Frames in IEEE 802.11 based WLANs](http://ieeexplore.ieee.org/document/5089319/?denied)
 
-**Passive Taxonomy of Wifi Clients using MLME Frame Contents**
+[Passive Taxonomy of Wifi Clients using MLME Frame Contents](https://arxiv.org/abs/1608.01725)
 
-**Passive Data Link Layer 802.11 Wireless Device Driver FingerPrinting**
+[Passive Data Link Layer 802.11 Wireless Device Driver FingerPrinting](https://pdfs.semanticscholar.org/54f5/359ef8434116511a66bb0d9bed02f6bed38f.pdf)
 
-**Identify Unique Devices through Wireless FingerPrinting**
+[Identify Unique Devices through Wireless FingerPrinting](https://dl.acm.org/citation.cfm?id=1352542&dl=ACM&coll=DL)
 
 
