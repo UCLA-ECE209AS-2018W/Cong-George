@@ -3,7 +3,9 @@
 
 
 ## Abstract
-In this paper we have demonstrated that we can infer the rough activity of a room/house(if there is someone at home or not) by snipping and parsing the wifi packets that are sent out by IoT devices such as Google home or Amazon Echo, and by mobile devices. We further demonstrated that even by parsing the informaiton contained in 802.11 mac frame header, we can create wifi signature of differnt device and infer the acticity within the house or home without decrypting wifi packet payload.
+
+In this paper we implemented a novel method to infer house occupancy only by looking at the enccypted 802.11 wifi traffic between client devices in the house and the wifi access point at the house. Using the wifi signature method proposed by two Google engineers, our device is able to identify the type of all devices in the target network. By checking the present of smartphones in the current network, a strong indicator of occupancy as most American adults always carry cellphone with them, our script is capable of tracking the house occupancy very accurately. 
+
 ## Introduciton
 
 As the concept of Internet of things are prevailing these days, more and more family choose to use them in house as a center of controll for other in-house IoT devices. For example, Google home can be associated with smart door lock or smart lamp for remote voice controll. While these devices greatly facilitate our daily life, it also exposes security issues.
@@ -24,17 +26,20 @@ As our approach relies on forming wifi signature from 802.11 frame heavily, we w
 The information in the header contains both sender and receiver information as well as packet type and some other information you can refer to [this site](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc757419(v=ws.10)) for a detailed information, our approach only focuses on two specific type of packets: **probing packet(frame)** and **association packet(frame)** in MLME
 
 * **WiFi Management Layer Identity(MLME)**  
-MLME compromises a number of different types of packets with fixed parameters in 802.11 frame and are followed by other parameters suc as tagged parameters, optional fields. Also, different vendor will also add thier own parameters to the packet, which make packets sent by different devices easy of identify. Among all those MLME packets, our approach leverage the content of **Probe Frames** and **Association Frame**:  
+MLME compromises a number of different types of packets with fixed parameters in 802.11 frame and are followed by other parameters suc as tagged parameters, optional fields. Also, different vendor will also add thier own parameters to the packet, which make packets sent by different devices easy of identify. Among all those MLME packets, our approach leverage the content of **Probe Frames** and **Association Frame**.
 
 **Probe frame**: sent by clients searching for an access point for any available AP, information included in the probe frame may be capabilites such as encodings, supported rates, authentication capabilities, supported MAC and so on.  
-**Association frame**: sent by clients to ask the AP to add clients themselved to the WLAN.  
-Our approach relies on these two frame to identify devices and infer house acticity.
 
-* **WiFi Signature**  
+**Association frame**: sent by clients to ask the AP to add clients themselved to the WLAN.  
+
+**Deauthentification Frame**: sent by both client and AP to terminate the communication and client disconnect with AP.
+Our approach relies on these three frame to identify devices and infer house acticity.
+
+**WiFi Signature**  
 In order for AP to handle probe and association request, AP examines the serires tagged parameters from clientsextracting those and used them as WiFi signatures. Since wifi signatures reflects a combination of the specific wifi chipset, device driver, WPA supplicant and PCB layout of the client device, they are capable of identidying differnt devices. The figure below shows the wifi signatures of differnt mobile phones.
 
 ## **Method**
-As mentioned in the previous section, the approach we are adopting is first we will collect all the packets from any devices nearby, and from the 802.11 frame we will extract probe frame and assocaition frame to form the WiFi signature and identify the devices that send out probe and association frame most frequnctly within in a period time that is sufficiently long. After we have identify those devices, we will regard a house or room being occupied when those all those devices are actively sending probe and assotiation frames.
+In this section, we introduced a few methods we have tried in this project. Before we finally settled on the wifi signature method, there were also a few failed attempts. Although these method did not work out eventually, it is still worth talking about as they did bring much insights to help us to find the final working solution.
 
 #### **Motivation**
 Inspired by [Spying on the Smart Home: Privacy Attacks and Defenses on Encrypted IoT Traffic](https://arxiv.org/pdf/1708.05044.pdf), despite that information in 802.11 raw packets sniffed from the air is very well encrypted by latest WPA2 encrytion method and is very difficult to decrypted, personal privacy information can be still distilled from the encrypted packets traffic analysis. Although data contained in the upper layer of the packet are encrytpted, the ethernet (mac) layer and radio link information are transparent, giving sniffer the opportunity to learn the frame type, packet size and etc of a traffic from certain device in the network at any time. Depending on the hardware/software configuration and usage of a smart device, its traffic pattern may also vary accordingly. As discovered by researchers in [Is Anybody Home? Inferring Activity From Smart Home Network Traffic](http://ieeexplore.ieee.org/document/7527776/?reload=true), smart home devices collect, exchange, and transmit various data about the environment of our homes. This data can not only be used to characterize a physical property but also to infer personal information about the inhabitants. Traffic classification can be used as a source for covert channel attacks. Specifically, traffic classification techniques can infer events taking place within a building. 
